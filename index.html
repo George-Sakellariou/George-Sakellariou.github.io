@@ -4,362 +4,355 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Georgios Sakellariou - AI Solutions Architect</title>
-    <meta name="description" content="AI Solutions Architect specializing in Azure OpenAI, LangChain, and production-grade AI systems. PwC Associate AI Engineer.">
-    
-    <!-- Fonts -->
+    <meta name="description" content="AI Solutions Architect specializing in Azure OpenAI, LangChain, and production-grade AI systems.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="cursor-glow"></div>
+
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span class="brand-accent">&lt;</span>GS<span class="brand-accent">/&gt;</span>
+        <div class="nav-content">
+            <a href="#home" class="nav-logo">GS</a>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#architectures">Architectures</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-grid"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    <span>Associate AI Engineer @ PwC</span>
+        <div class="hero-content">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span>Available for Projects</span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="line">AI Solutions</span>
+                <span class="line gradient-text">Architect</span>
+            </h1>
+
+            <p class="hero-description">
+                Designing production-grade AI systems with Azure OpenAI, LangChain, and
+                enterprise-scale infrastructure. Specializing in intelligent automation,
+                scalable ML pipelines, and robust AI architectures.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Reference Architectures</div>
                 </div>
-                <h1 class="hero-title">
-                    <span class="title-line">AI Solutions</span>
-                    <span class="title-line">Architect</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Designing production-grade AI systems with <span class="highlight">Azure OpenAI</span>, 
-                    <span class="highlight">LangChain</span>, and enterprise-scale infrastructure.
-                    Specializing in cost optimization, intelligent automation, and scalable ML pipelines.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-value">50-80%</div>
-                        <div class="stat-label">Cost Reduction</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">&lt;100ms</div>
-                        <div class="stat-label">P95 Latency</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">99.9%</div>
-                        <div class="stat-label">Uptime SLA</div>
-                    </div>
+                <div class="stat-card">
+                    <div class="stat-value">Production</div>
+                    <div class="stat-label">Ready Designs</div>
                 </div>
-                <div class="hero-cta">
-                    <a href="#architectures" class="btn btn-primary">View Architectures</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                <div class="stat-card">
+                    <div class="stat-value">Enterprise</div>
+                    <div class="stat-label">Scale Systems</div>
                 </div>
             </div>
+
+            <div class="hero-cta">
+                <a href="#work" class="btn btn-primary">View Architectures</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- Architecture Cards Section -->
-    <section class="architectures" id="architectures">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Reference Architectures</h2>
-                <p class="section-subtitle">Production-ready designs for enterprise AI systems</p>
-            </div>
+    <!-- Architectures Section -->
+    <section class="architectures" id="work">
+        <div class="section-header">
+            <h2 class="section-title">Reference <span class="gradient-text">Architectures</span></h2>
+            <p class="section-subtitle">Production-ready designs for enterprise AI systems</p>
+        </div>
 
-            <div class="architecture-grid">
-                <!-- Architecture 1: RAG System -->
-                <article class="architecture-card" data-architecture="1">
-                    <div class="card-header">
-                        <div class="card-number">01</div>
-                        <div class="card-status">Coming Soon</div>
+        <div class="architecture-grid">
+            <!-- Architecture 1 -->
+            <article class="arch-card">
+                <div class="arch-number">01</div>
+                <div class="arch-content">
+                    <div class="arch-header">
+                        <h3>Enterprise RAG System</h3>
+                        <span class="status-tag">Coming Soon</span>
                     </div>
-                    <h3 class="card-title">Enterprise RAG System</h3>
-                    <p class="card-description">
-                        Cost-optimized document Q&A with semantic caching, hybrid search, 
-                        and intelligent retrieval strategies.
+                    <p class="arch-description">
+                        Cost-optimized document Q&A with semantic caching, hybrid search,
+                        and intelligent retrieval strategies. Production-grade architecture
+                        designed for high-throughput enterprise deployments.
                     </p>
-                    <div class="card-tech">
+                    <div class="tech-stack">
                         <span class="tech-tag">Azure OpenAI</span>
                         <span class="tech-tag">AI Search</span>
                         <span class="tech-tag">Redis Cache</span>
                         <span class="tech-tag">FastAPI</span>
                     </div>
-                    <div class="card-metrics">
-                        <div class="metric">
-                            <span class="metric-label">Cost Savings</span>
-                            <span class="metric-value">50-70%</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">From</span>
-                            <span class="metric-value">€500/mo</span>
-                        </div>
+                    <div class="arch-highlights">
+                        <div class="highlight-item">Semantic caching layer</div>
+                        <div class="highlight-item">Hybrid search strategy</div>
+                        <div class="highlight-item">99.9% uptime design</div>
                     </div>
-                    <a href="architecture-1.html" class="card-link">
-                        View Architecture <span class="arrow">→</span>
-                    </a>
-                </article>
+                </div>
+                <div class="arch-arrow">→</div>
+            </article>
 
-                <!-- Architecture 2: Talk-to-Data -->
-                <article class="architecture-card" data-architecture="2">
-                    <div class="card-header">
-                        <div class="card-number">02</div>
-                        <div class="card-status">Coming Soon</div>
+            <!-- Architecture 2 -->
+            <article class="arch-card">
+                <div class="arch-number">02</div>
+                <div class="arch-content">
+                    <div class="arch-header">
+                        <h3>Talk-to-Data Platform</h3>
+                        <span class="status-tag">Coming Soon</span>
                     </div>
-                    <h3 class="card-title">Talk-to-Data Platform</h3>
-                    <p class="card-description">
-                        Natural language to SQL with multi-tenant security, PII detection, 
-                        and automated visualization generation.
+                    <p class="arch-description">
+                        Natural language to SQL with multi-tenant security, PII detection,
+                        and automated visualization generation. Secure, scalable architecture
+                        for enterprise data analytics.
                     </p>
-                    <div class="card-tech">
+                    <div class="tech-stack">
                         <span class="tech-tag">GPT-4</span>
                         <span class="tech-tag">Azure SQL</span>
                         <span class="tech-tag">LangChain</span>
                         <span class="tech-tag">Power BI</span>
                     </div>
-                    <div class="card-metrics">
-                        <div class="metric">
-                            <span class="metric-label">Query Time</span>
-                            <span class="metric-value">&lt;2s</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">From</span>
-                            <span class="metric-value">€300/mo</span>
-                        </div>
+                    <div class="arch-highlights">
+                        <div class="highlight-item">Multi-tenant security</div>
+                        <div class="highlight-item">PII detection & masking</div>
+                        <div class="highlight-item">Auto-visualization</div>
                     </div>
-                    <a href="architecture-2.html" class="card-link">
-                        View Architecture <span class="arrow">→</span>
-                    </a>
-                </article>
+                </div>
+                <div class="arch-arrow">→</div>
+            </article>
 
-                <!-- Architecture 3: Multi-Model Intelligence -->
-                <article class="architecture-card" data-architecture="3">
-                    <div class="card-header">
-                        <div class="card-number">03</div>
-                        <div class="card-status">Coming Soon</div>
+            <!-- Architecture 3 -->
+            <article class="arch-card">
+                <div class="arch-number">03</div>
+                <div class="arch-content">
+                    <div class="arch-header">
+                        <h3>AI Insights Dashboard</h3>
+                        <span class="status-tag">Coming Soon</span>
                     </div>
-                    <h3 class="card-title">AI Insights Dashboard</h3>
-                    <p class="card-description">
-                        Multi-model orchestration with intelligent routing, real-time cost tracking, 
-                        and automated insight generation.
+                    <p class="arch-description">
+                        Multi-model orchestration with intelligent routing, real-time monitoring,
+                        and automated insight generation. Optimized for performance and reliability
+                        at enterprise scale.
                     </p>
-                    <div class="card-tech">
+                    <div class="tech-stack">
                         <span class="tech-tag">GPT-4 / 3.5</span>
                         <span class="tech-tag">Claude</span>
                         <span class="tech-tag">Azure Synapse</span>
                         <span class="tech-tag">React</span>
                     </div>
-                    <div class="card-metrics">
-                        <div class="metric">
-                            <span class="metric-label">Cost Savings</span>
-                            <span class="metric-value">80%</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">From</span>
-                            <span class="metric-value">€2K/mo</span>
-                        </div>
+                    <div class="arch-highlights">
+                        <div class="highlight-item">Intelligent model routing</div>
+                        <div class="highlight-item">Real-time analytics</div>
+                        <div class="highlight-item">Scalable orchestration</div>
                     </div>
-                    <a href="architecture-3.html" class="card-link">
-                        View Architecture <span class="arrow">→</span>
-                    </a>
-                </article>
-            </div>
+                </div>
+                <div class="arch-arrow">→</div>
+            </article>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-main">
-                    <h2 class="section-title">About Me</h2>
-                    <div class="about-text">
-                        <p>
-                            I'm an AI Solutions Architect at PwC, specializing in production-grade enterprise AI systems. 
-                            My focus is on designing systems that scale from prototype to production while optimizing 
-                            for cost, performance, and reliability.
-                        </p>
-                        <p>
-                            With a background in Electrical & Computer Engineering (AUTH) and hands-on experience 
-                            deploying AI at national scale—including Greece's National Electronic Health Record—I bring 
-                            both technical depth and practical implementation knowledge.
-                        </p>
-                        <p>
-                            My approach combines Azure cloud services, modern AI frameworks (Azure OpenAI, LangChain), 
-                            and DevOps best practices to build systems that solve real business problems while keeping 
-                            costs under control.
-                        </p>
+        <div class="about-grid">
+            <!-- Main Content -->
+            <div class="about-main">
+                <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+
+                <div class="about-text">
+                    <p>
+                        I'm an AI Solutions Architect specializing in production-grade enterprise AI systems.
+                        My focus is on designing architectures that scale from prototype to production while
+                        maintaining performance, reliability, and security.
+                    </p>
+                    <p>
+                        With a background in Electrical & Computer Engineering from Aristotle University of
+                        Thessaloniki, I combine deep technical knowledge with practical implementation experience
+                        in Azure cloud services, modern AI frameworks, and DevOps best practices.
+                    </p>
+                    <p>
+                        My approach emphasizes clean architecture, intelligent optimization, and building systems
+                        that solve real problems with cutting-edge AI technology.
+                    </p>
+                </div>
+
+                <h3 class="subsection-title">Core Competencies</h3>
+                <div class="competencies">
+                    <div class="competency-item">
+                        <div class="competency-icon">🏗️</div>
+                        <div class="competency-content">
+                            <h4>System Architecture</h4>
+                            <p>Designing scalable, production-ready AI systems with Azure cloud infrastructure</p>
+                        </div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-icon">🤖</div>
+                        <div class="competency-content">
+                            <h4>AI/ML Development</h4>
+                            <p>LLM orchestration, RAG systems, and intelligent automation pipelines</p>
+                        </div>
+                    </div>
+                    <div class="competency-item">
+                        <div class="competency-icon">⚡</div>
+                        <div class="competency-content">
+                            <h4>Performance Optimization</h4>
+                            <p>Caching strategies, latency optimization, and efficient resource utilization</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="about-sidebar">
+                <!-- Skills -->
+                <div class="sidebar-card">
+                    <h3>Technical Stack</h3>
+
+                    <div class="skill-group">
+                        <h4>AI/ML</h4>
+                        <div class="skill-tags">
+                            <span>Azure OpenAI</span>
+                            <span>LangChain</span>
+                            <span>Hugging Face</span>
+                            <span>PyTorch</span>
+                        </div>
                     </div>
 
-                    <h3 class="subsection-title">Professional Experience</h3>
-                    <div class="experience-list">
-                        <div class="experience-item">
-                            <div class="exp-header">
-                                <h4>Associate AI Engineer</h4>
-                                <span class="exp-company">PwC</span>
-                                <span class="exp-date">June 2024 - Present</span>
-                            </div>
-                            <ul class="exp-highlights">
-                                <li><strong>National Electronic Health Record (NEHR)</strong> - Azure ML, Databricks, PySpark for nationwide healthcare digitization</li>
-                                <li><strong>HRaklis Copilot</strong> - AI-powered virtual assistant with SAP integration for Helleniq Digital</li>
-                                <li><strong>Piraeus Bank Reporting</strong> - ML models for banking analytics and regulatory compliance</li>
-                                <li><strong>AADE Control Tower</strong> - Ministry of Finance real-time monitoring and anomaly detection</li>
-                            </ul>
+                    <div class="skill-group">
+                        <h4>Cloud & Infrastructure</h4>
+                        <div class="skill-tags">
+                            <span>Azure</span>
+                            <span>Terraform</span>
+                            <span>Docker</span>
+                            <span>Kubernetes</span>
                         </div>
-                        <div class="experience-item">
-                            <div class="exp-header">
-                                <h4>Research Assistant</h4>
-                                <span class="exp-company">AUTH - Signal Processing & Biomedical Tech</span>
-                                <span class="exp-date">Nov 2021 - Oct 2023</span>
-                            </div>
-                            <ul class="exp-highlights">
-                                <li>Deep learning for medical imaging (CNNs, PyTorch, TensorFlow)</li>
-                                <li>Echocardiographic analysis and clinical diagnostics</li>
-                            </ul>
+                    </div>
+
+                    <div class="skill-group">
+                        <h4>Data & Analytics</h4>
+                        <div class="skill-tags">
+                            <span>PySpark</span>
+                            <span>SQL</span>
+                            <span>Databricks</span>
+                            <span>NumPy</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h4>Development</h4>
+                        <div class="skill-tags">
+                            <span>Python</span>
+                            <span>FastAPI</span>
+                            <span>React</span>
+                            <span>Git</span>
                         </div>
                     </div>
                 </div>
 
-                <aside class="about-sidebar">
-                    <!-- Technical Skills -->
-                    <div class="sidebar-card">
-                        <h3 class="card-heading">Technical Stack</h3>
-                        <div class="skills-group">
-                            <h4>AI/ML Frameworks</h4>
-                            <div class="skill-tags">
-                                <span>Azure OpenAI</span>
-                                <span>LangChain</span>
-                                <span>Hugging Face</span>
-                                <span>PyTorch</span>
-                            </div>
-                        </div>
-                        <div class="skills-group">
-                            <h4>Cloud & Infrastructure</h4>
-                            <div class="skill-tags">
-                                <span>Azure</span>
-                                <span>Terraform</span>
-                                <span>Docker</span>
-                                <span>Kubernetes</span>
-                            </div>
-                        </div>
-                        <div class="skills-group">
-                            <h4>Data & Analytics</h4>
-                            <div class="skill-tags">
-                                <span>PySpark</span>
-                                <span>SQL</span>
-                                <span>Databricks</span>
-                                <span>NumPy</span>
-                            </div>
-                        </div>
-                        <div class="skills-group">
-                            <h4>DevOps</h4>
-                            <div class="skill-tags">
-                                <span>Git</span>
-                                <span>Azure DevOps</span>
-                                <span>GitLab</span>
-                                <span>CI/CD</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Certifications -->
+                <div class="sidebar-card">
+                    <h3>Certifications</h3>
+                    <ul class="cert-list">
+                        <li>Azure Developer Associate (AZ-204)</li>
+                        <li>Azure AI Engineer Associate (AI-102)</li>
+                        <li>Azure Fundamentals (AZ-900)</li>
+                        <li>Terraform Associate (003)</li>
+                        <li>Power Automate: SAP Integration</li>
+                    </ul>
+                </div>
 
-                    <!-- Certifications -->
-                    <div class="sidebar-card">
-                        <h3 class="card-heading">Certifications</h3>
-                        <ul class="cert-list">
-                            <li>Azure Developer Associate (AZ-204)</li>
-                            <li>Azure AI Engineer Associate (AI-102)</li>
-                            <li>Azure Fundamentals (AZ-900)</li>
-                            <li>Terraform Associate (003)</li>
-                            <li>Power Automate: SAP Integration</li>
-                        </ul>
+                <!-- Education -->
+                <div class="sidebar-card">
+                    <h3>Education</h3>
+                    <div class="edu-item">
+                        <h4>BSc & MSc</h4>
+                        <p>Electrical & Computer Engineering</p>
+                        <p class="edu-school">Aristotle University of Thessaloniki</p>
+                        <p class="edu-note">Thesis: Deep Learning for LVEF Calculation (10.0/10.0)</p>
                     </div>
-
-                    <!-- Education -->
-                    <div class="sidebar-card">
-                        <h3 class="card-heading">Education</h3>
-                        <div class="edu-item">
-                            <h4>BSc & MSc</h4>
-                            <p>Electrical & Computer Engineering</p>
-                            <p class="edu-school">Aristotle University of Thessaloniki</p>
-                            <p class="edu-thesis">Thesis: Deep Learning for LVEF Calculation (10.0/10.0)</p>
-                        </div>
-                    </div>
-                </aside>
-            </div>
+                </div>
+            </aside>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="contact-intro">
-                    Interested in working together or discussing AI architecture? 
-                    I'm open to consulting opportunities and technical collaborations.
-                </p>
-                
-                <div class="contact-methods">
-                    <a href="mailto:gsakel25@gmail.com" class="contact-method">
-                        <div class="method-icon">✉️</div>
-                        <div class="method-content">
-                            <div class="method-label">Email</div>
-                            <div class="method-value">gsakel25@gmail.com</div>
-                        </div>
-                    </a>
+        <div class="contact-content">
+            <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+            <p class="section-subtitle">
+                Interested in discussing AI architecture or exploring collaboration opportunities?
+                Feel free to reach out.
+            </p>
 
-                    <a href="https://www.linkedin.com/in/george-sakellariou-23m11n13" target="_blank" class="contact-method">
-                        <div class="method-icon">💼</div>
-                        <div class="method-content">
-                            <div class="method-label">LinkedIn</div>
-                            <div class="method-value">/george-sakellariou-23m11n13</div>
-                        </div>
-                    </a>
+            <div class="contact-grid">
+                <a href="mailto:gsakel25@gmail.com" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">gsakel25@gmail.com</span>
+                    </div>
+                </a>
 
-                    <a href="https://github.com/George-Sakellariou" target="_blank" class="contact-method">
-                        <div class="method-icon">💻</div>
-                        <div class="method-content">
-                            <div class="method-label">GitHub</div>
-                            <div class="method-value">/George-Sakellariou</div>
-                        </div>
-                    </a>
-                </div>
+                <a href="https://www.linkedin.com/in/george-sakellariou-23m11n13" target="_blank" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">george-sakellariou</span>
+                    </div>
+                </a>
 
-                <div class="location-info">
-                    <span class="location-icon">📍</span>
-                    <span>Based in Volos, Greece • Available for remote work globally</span>
-                </div>
+                <a href="https://github.com/George-Sakellariou" target="_blank" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">George-Sakellariou</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="location">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span>Based in Volos, Greece • Available for remote work globally</span>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="brand-accent">&lt;</span>GS<span class="brand-accent">/&gt;</span>
-                    <p>AI Solutions Architect</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/George-Sakellariou" target="_blank">GitHub</a>
-                    <a href="https://www.linkedin.com/in/george-sakellariou-23m11n13" target="_blank">LinkedIn</a>
-                    <a href="mailto:gsakel25@gmail.com">Email</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Georgios Sakellariou. All architectures designed for production deployment.</p>
-            </div>
+        <div class="footer-content">
+            <p>&copy; 2024 Georgios Sakellariou</p>
+            <p>Designing production-grade AI systems</p>
         </div>
     </footer>
 
