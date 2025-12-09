@@ -224,7 +224,7 @@
         }
 
         .flow-component {
-            background: var(--bg-card);
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: var(--spacing-md);
@@ -234,15 +234,20 @@
         }
 
         .flow-component:hover {
+            background: rgba(255, 255, 255, 0.12);
             border-color: var(--border-hover);
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
         .flow-component.highlight {
-            background: rgba(0, 212, 255, 0.05);
-            border-color: rgba(0, 212, 255, 0.3);
-            box-shadow: 0 0 20px var(--accent-glow);
+            background: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .flow-component.highlight:hover {
+            background: rgba(0, 212, 255, 0.2);
         }
 
         .component-title {
@@ -688,7 +693,7 @@
                         <div class="stage-title">🤖 LLM Processing</div>
                         <div class="flow-components">
                             <div class="flow-component">
-                                <div class="component-title">GPT-4 Turbo</div>
+                                <div class="component-title">GPT-5</div>
                                 <div class="component-subtitle">Context + Prompt</div>
                             </div>
                             <div class="flow-component">
@@ -764,7 +769,7 @@
                 <div class="component-card fade-in">
                     <div class="component-icon">🤖</div>
                     <h3>Language Model</h3>
-                    <div class="azure-service">Azure OpenAI (GPT-4 Turbo)</div>
+                    <div class="azure-service">Azure OpenAI (GPT-5)</div>
                     <p>
                         Generates contextual answers using retrieved document chunks. Engineered prompts
                         ensure grounded responses with source citations and minimal hallucination.
@@ -856,7 +861,7 @@
                     <div class="step-content">
                         <div class="step-title">LLM Generation</div>
                         <div class="step-description">
-                            GPT-4 processes prompt + context, generates answer with source references,
+                            GPT-5 processes prompt + context, generates answer with source references,
                             streams response for better UX.
                         </div>
                     </div>
