@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk-to-Data Platform | Georgios Sakellariou</title>
+    <meta name="description" content="Enterprise-grade conversational data platform powered by multi-agent AI orchestration with self-healing queries and unified multi-source integration.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===================================
+           ARCHITECTURE PAGE STYLES
+           =================================== */
+
+        .arch-page {
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 90px;
+            left: var(--spacing-xl);
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all var(--transition-base);
+            backdrop-filter: blur(20px);
+        }
+
+        .back-button:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+            transform: translateX(-4px);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.25rem;
+            transition: transform var(--transition-base);
+        }
+
+        .back-button:hover::before {
+            transform: translateX(-2px);
+        }
+
+        /* Hero Section */
+        .arch-hero {
+            padding: calc(var(--spacing-3xl) + 80px) var(--spacing-xl) var(--spacing-3xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arch-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .arch-hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .arch-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .arch-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 500;
+        }
+
+        .arch-hero .description {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .challenge-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .challenge-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+            transform: scaleY(0);
+            transition: transform var(--transition-base);
+        }
+
+        .challenge-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .challenge-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .challenge-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .challenge-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Diagram Section */
+        .diagram-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .diagram-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .diagram-container {
+            margin-top: var(--spacing-xl);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            overflow-x: auto;
+        }
+
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            min-width: 600px;
+        }
+
+        .flow-stage {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .stage-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .flow-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .flow-component {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all var(--transition-base);
+            position: relative;
+        }
+
+        .flow-component:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .flow-component.highlight {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .flow-component.highlight:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .component-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .component-subtitle {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* Color coding for stages */
+        .stage-datasources .flow-component { border-left: 3px solid #6B7280; }
+        .stage-metadata .flow-component { border-left: 3px solid #0078D4; }
+        .stage-orchestration .flow-component { border-left: 3px solid #8B5CF6; }
+        .stage-healing .flow-component { border-left: 3px solid #10B981; }
+        .stage-viz .flow-component { border-left: 3px solid #F59E0B; }
+        .stage-governance .flow-component { border-left: 3px solid #EF4444; }
+        .stage-ui .flow-component { border-left: 3px solid #00d4ff; }
+
+        /* Multi-agent grid */
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .agent-box {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            padding: var(--spacing-sm);
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Components Grid */
+        .components-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .components-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .component-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .component-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .component-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .component-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .azure-service {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 120, 212, 0.1);
+            color: #0078D4;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .component-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Data Flow Section */
+        .dataflow-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .dataflow-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flow-timeline {
+            margin-top: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(to bottom, #8B5CF6, transparent);
+        }
+
+        .flow-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+            color: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .step-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+
+        .step-content:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateX(8px);
+        }
+
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .step-agent {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(139, 92, 246, 0.1);
+            color: #8B5CF6;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step-details {
+            background: var(--bg-elevated);
+            border-radius: 6px;
+            padding: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+            font-size: 0.875rem;
+        }
+
+        .step-details ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .step-details li {
+            color: var(--text-tertiary);
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .step-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #8B5CF6;
+        }
+
+        .step-result {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid var(--success);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .step-warning {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: rgba(255, 170, 0, 0.05);
+            border-left: 3px solid var(--warning);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .step-code {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: var(--bg-primary);
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8125rem;
+            color: var(--accent-primary);
+            overflow-x: auto;
+        }
+
+        /* Callout Box */
+        .callout-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .callout-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .callout-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .callout-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+        }
+
+        .callout-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .callout-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        /* Footer CTA */
+        .arch-footer {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .arch-footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .arch-footer h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .back-button {
+                left: var(--spacing-md);
+                top: 80px;
+            }
+
+            .arch-hero {
+                padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
+            }
+
+            .challenge-section,
+            .diagram-section,
+            .components-section,
+            .dataflow-section,
+            .callout-section,
+            .arch-footer {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-step {
+                grid-template-columns: 50px 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .flow-step::before {
+                left: 25px;
+            }
+
+            .footer-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="arch-page">
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">GS</a>
+            <div class="nav-links">
+                <a href="index.html#work">Architectures</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back Button -->
+    <a href="index.html#work" class="back-button">Back to Portfolio</a>
+
+    <!-- Hero Section -->
+    <section class="arch-hero">
+        <div class="arch-hero-content fade-in">
+            <h1><span class="gradient-text">Talk-to-Data Platform</span></h1>
+            <p class="subtitle">Agentic Natural Language Intelligence with Multi-Source Integration</p>
+            <p class="description">
+                An enterprise-grade conversational data platform powered by multi-agent AI orchestration that
+                transforms natural language questions into actionable insights across SQL, NoSQL, and unstructured
+                data sources. Features intelligent query routing, autonomous data validation, semantic schema
+                understanding, and self-healing query correction with built-in governance and audit trails.
+            </p>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section class="challenge-section">
+        <div class="challenge-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The <span class="gradient-text">Challenge</span></h2>
+                <p class="section-subtitle">Critical barriers to data democratization</p>
+            </div>
+
+            <div class="challenge-grid">
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">🚫</div>
+                    <p>
+                        Business users locked out of data insights - require SQL expertise and data team
+                        bottlenecks delay critical decisions.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">🗂️</div>
+                    <p>
+                        Data scattered across multiple sources (SQL databases, data lakes, APIs, documents)
+                        with no unified query interface.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">⚠️</div>
+                    <p>
+                        Existing NL2SQL tools generate incorrect queries for complex business logic, lack
+                        context awareness, and produce unreliable results.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">🛡️</div>
+                    <p>
+                        No enterprise governance - query history lost, no audit trails, PII exposure risks,
+                        and zero compliance controls.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagram Section -->
+    <section class="diagram-section">
+        <div class="diagram-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Architecture</span></h2>
+                <p class="section-subtitle">Multi-agent orchestration with self-healing capabilities</p>
+            </div>
+
+            <div class="diagram-container fade-in">
+                <div class="diagram-flow">
+                    <!-- Stage 1: Data Sources -->
+                    <div class="flow-stage stage-datasources">
+                        <div class="stage-title">💾 Data Source Layer</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Azure SQL DB</div>
+                                <div class="component-subtitle">Production Data</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Cosmos DB</div>
+                                <div class="component-subtitle">NoSQL</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Blob Storage</div>
+                                <div class="component-subtitle">Documents</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">External APIs</div>
+                                <div class="component-subtitle">SaaS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 2: Metadata Layer -->
+                    <div class="flow-stage stage-metadata">
+                        <div class="stage-title">📚 Unified Metadata Layer</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Azure Purview</div>
+                                <div class="component-subtitle">Data Catalog & Lineage</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Business Glossary</div>
+                                <div class="component-subtitle">NL → Technical Mapping</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 3: Agentic Orchestration -->
+                    <div class="flow-stage stage-orchestration">
+                        <div class="stage-title">🧠 Agentic Orchestration Layer</div>
+                        <div class="flow-component highlight">
+                            <div class="component-title">Master Coordinator Agent</div>
+                            <div class="component-subtitle">GPT-5 • Query Understanding & Routing</div>
+                        </div>
+                        <div class="agent-grid">
+                            <div class="agent-box">
+                                <strong>Schema Agent</strong><br>GPT-5
+                            </div>
+                            <div class="agent-box">
+                                <strong>Query Builder</strong><br>GPT-5
+                            </div>
+                            <div class="agent-box">
+                                <strong>Data Validator</strong><br>GPT-5
+                            </div>
+                            <div class="agent-box">
+                                <strong>Governance Agent</strong><br>GPT-5
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 4: Query Engine -->
+                    <div class="flow-stage stage-metadata">
+                        <div class="stage-title">⚙️ Intelligent Query Engine</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">SQL Server 2025</div>
+                                <div class="component-subtitle">Semantic Layer + AI Functions</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Query Decomposition</div>
+                                <div class="component-subtitle">Multi-Step Execution</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 5: Self-Healing -->
+                    <div class="flow-stage stage-healing">
+                        <div class="stage-title">🔄 Self-Healing & Validation</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Query Validation</div>
+                                <div class="component-subtitle">Syntax & Semantic Checks</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Error Recovery Agent</div>
+                                <div class="component-subtitle">Automatic Correction</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 6: Visualization -->
+                    <div class="flow-stage stage-viz">
+                        <div class="stage-title">📊 Visualization Engine</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Visualization Agent</div>
+                                <div class="component-subtitle">GPT-5 • Auto Chart Selection</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Power BI</div>
+                                <div class="component-subtitle">Interactive Dashboards</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 7: Governance -->
+                    <div class="flow-stage stage-governance">
+                        <div class="stage-title">🛡️ Enterprise Governance & Security</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">PII Detection</div>
+                                <div class="component-subtitle">Auto-Masking</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Audit Trail</div>
+                                <div class="component-subtitle">Complete History</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">RLS Enforcement</div>
+                                <div class="component-subtitle">Row-Level Security</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 8: API/UI -->
+                    <div class="flow-stage stage-ui">
+                        <div class="stage-title">💬 API & User Interface</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">FastAPI Backend</div>
+                                <div class="component-subtitle">WebSocket + REST</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">React Frontend</div>
+                                <div class="component-subtitle">Conversational UI</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section class="components-section">
+        <div class="components-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Components</span></h2>
+                <p class="section-subtitle">Multi-agent architecture building blocks</p>
+            </div>
+
+            <div class="components-grid">
+                <div class="component-card fade-in">
+                    <div class="component-icon">📚</div>
+                    <h3>Intelligent Data Catalog</h3>
+                    <div class="azure-service">Azure Purview + SQL Server 2025</div>
+                    <p>
+                        Automated schema discovery with natural language business glossary mapping. Tracks data
+                        lineage, classifies sensitive data (PII), and maintains real-time metadata synchronization
+                        across all sources.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🧠</div>
+                    <h3>Orchestration Agent</h3>
+                    <div class="azure-service">Azure OpenAI (GPT-5)</div>
+                    <p>
+                        Central intelligence that interprets user intent, decomposes complex questions into
+                        sub-tasks, routes work to specialized agents, and synthesizes final responses. Maintains
+                        conversation context across multi-turn dialogues.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🗺️</div>
+                    <h3>Schema Intelligence Agent</h3>
+                    <div class="azure-service">Azure OpenAI (GPT-5)</div>
+                    <p>
+                        Semantic understanding of database schemas through business glossary and metadata. Maps
+                        natural language concepts to technical columns, understands relationships and joins, and
+                        maintains context-aware schema embeddings.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🔧</div>
+                    <h3>SQL Generation Agent</h3>
+                    <div class="azure-service">Azure OpenAI (GPT-5) + SQL Server 2025</div>
+                    <p>
+                        Advanced NL2SQL with multi-step query decomposition. Leverages SQL Server 2025's native
+                        semantic search and AI functions for context-aware query generation. Handles complex
+                        aggregations, subqueries, and cross-database joins.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">✓</div>
+                    <h3>Validation & Quality Agent</h3>
+                    <div class="azure-service">Azure OpenAI (GPT-5) + Rules Engine</div>
+                    <p>
+                        Real-time query validation with syntax checking, semantic correctness verification, and
+                        performance prediction. Detects potential data quality issues, validates results against
+                        expected patterns, and flags anomalies.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🔄</div>
+                    <h3>Error Recovery Agent</h3>
+                    <div class="azure-service">AutoGen Multi-Agent Framework</div>
+                    <p>
+                        Autonomous error detection and correction system. Analyzes failed queries, generates
+                        alternative approaches, learns from successful corrections, and maintains feedback loops.
+                        Continuously improves accuracy through reinforcement learning.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🛡️</div>
+                    <h3>Security & Audit Agent</h3>
+                    <div class="azure-service">Azure AD + Purview DLP</div>
+                    <p>
+                        Enterprise-grade security with automatic PII detection and masking, row-level security
+                        enforcement, column-level permissions, and approval workflows for sensitive queries. Complete
+                        audit trail with user attribution and compliance reporting.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">📊</div>
+                    <h3>Auto-Visualization Agent</h3>
+                    <div class="azure-service">Azure OpenAI (GPT-5) + Power BI</div>
+                    <p>
+                        Intelligent chart selection based on data characteristics and user intent. Automatically
+                        generates dashboards, detects visualization opportunities, and exports to multiple formats.
+                        Learns user preferences for consistent styling.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Flow Section -->
+    <section class="dataflow-section">
+        <div class="dataflow-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Data Flow: <span class="gradient-text">Question to Insight</span></h2>
+                <p class="section-subtitle">Multi-agent collaboration in action</p>
+            </div>
+
+            <div class="flow-timeline">
+                <!-- Step 1 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">User Query Received</div>
+                        <div class="step-description">
+                            Business user submits complex question through conversational interface.
+                        </div>
+                        <div class="step-code">
+                            "Show me revenue trends by region for products launched in the last quarter, excluding returns"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-agent">Master Coordinator Agent</div>
+                        <div class="step-title">Intent Analysis & Agent Routing</div>
+                        <div class="step-description">
+                            Master Coordinator analyzes query complexity and distributes work to specialized agents.
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Identifies: Time-series + Geographic + Product filtering + Exclusion logic</li>
+                                <li>Complexity: High (requires multi-step decomposition)</li>
+                                <li>Agent Routing: Schema → Query Builder → Validator</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-agent">Schema Intelligence Agent</div>
+                        <div class="step-title">Semantic Schema Mapping</div>
+                        <div class="step-description">
+                            Maps natural language to database objects using Azure Purview metadata.
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>"revenue" → [Sales].[TotalAmount]</li>
+                                <li>"region" → [Geography].[RegionName] (via JOIN)</li>
+                                <li>"products launched" → [Products].[LaunchDate] + FILTER</li>
+                                <li>"excluding returns" → WHERE [Sales].[Type] != 'Return'</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">✓ Complete semantic schema understanding achieved</div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-agent">Query Builder Agent</div>
+                        <div class="step-title">Multi-Step Query Decomposition</div>
+                        <div class="step-description">
+                            Breaks complex question into executable sub-queries using SQL Server 2025 semantic layer.
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Step 1: Identify products launched in last 90 days</li>
+                                <li>Step 2: Calculate revenue by region (excluding returns)</li>
+                                <li>Step 3: Generate time-series aggregation</li>
+                                <li>Step 4: Final JOIN and aggregation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-agent">Validation Agent</div>
+                        <div class="step-title">Pre-Execution Validation</div>
+                        <div class="step-description">
+                            Performs comprehensive checks before query execution.
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>SQL Syntax: ✓ Valid</li>
+                                <li>Semantic Correctness: ✓ Matches intent</li>
+                                <li>Performance Estimate: ~2.3 seconds</li>
+                                <li>Security Check: ✓ User has access</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">✓ Query approved for execution</div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">Query Execution</div>
+                        <div class="step-description">
+                            Execute against production databases with real-time monitoring.
+                        </div>
+                        <div class="step-result">1,247 rows returned in 1.9 seconds</div>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <div class="step-agent">Validation Agent</div>
+                        <div class="step-title">Result Quality Check</div>
+                        <div class="step-description">
+                            Post-execution validation to ensure data quality.
+                        </div>
+                        <div class="step-warning">
+                            ⚠️ Anomaly detected: Region "APAC" shows 300% spike (flagged for review)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <div class="step-agent">Visualization Agent</div>
+                        <div class="step-title">Intelligent Chart Selection</div>
+                        <div class="step-description">
+                            Auto-generates appropriate visualizations based on data characteristics.
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Data type: Time-series + Numeric + Categorical</li>
+                                <li>Best fit: Line chart with regional comparison</li>
+                                <li>Secondary: Geographic heat map</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 9 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <div class="step-agent">Error Recovery Agent (Background)</div>
+                        <div class="step-title">Self-Healing Monitoring</div>
+                        <div class="step-description">
+                            Monitors execution - NO errors detected this time.
+                        </div>
+                        <div class="step-result">
+                            ✓ Query success rate: 100%<br>
+                            ✓ Pattern logged for future learning
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 10 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">10</div>
+                    <div class="step-content">
+                        <div class="step-agent">Governance Agent</div>
+                        <div class="step-title">Audit Trail & Compliance</div>
+                        <div class="step-description">
+                            Complete audit record for compliance and security.
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>User: jane.doe@company.com</li>
+                                <li>Query Intent: Revenue analysis by region</li>
+                                <li>Data Accessed: Sales, Products, Geography</li>
+                                <li>PII Exposure: None detected</li>
+                                <li>Compliance: ✓ GDPR compliant</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 11 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">11</div>
+                    <div class="step-content">
+                        <div class="step-title">Interactive Visualization Delivered</div>
+                        <div class="step-description">
+                            User receives complete analysis with anomaly alerts and drill-down options.
+                        </div>
+                        <div class="step-result">
+                            ✓ Revenue trends by region visualized<br>
+                            ✓ Anomaly alert provided<br>
+                            ✓ Export options available<br>
+                            ✓ Total time: 2.1 seconds
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Callout Section -->
+    <section class="callout-section">
+        <div class="callout-content">
+            <div class="callout-box fade-in">
+                <h3 class="callout-title">What Makes This Different?</h3>
+                <p class="callout-text">
+                    Unlike traditional NL2SQL tools that rely on a single LLM and often fail on complex queries,
+                    this platform uses a multi-agent architecture where specialized AI agents collaborate to
+                    understand your question, validate queries before execution, and automatically correct errors.
+                    The result: <strong>95% accuracy on complex business questions</strong> with built-in enterprise
+                    governance that ensures data security, complete audit trails, and regulatory compliance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="arch-footer">
+        <div class="arch-footer-content fade-in">
+            <h2>Interested in this <span class="gradient-text">Architecture?</span></h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">
+                Explore the implementation details on GitHub or get in touch to discuss enterprise deployment.
+            </p>
+
+            <div class="footer-buttons">
+                <a href="https://github.com/George-Sakellariou" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View GitHub Repository
+                </a>
+                <a href="index.html#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Georgios Sakellariou</p>
+            <p>AI & Cloud Solutions Architecture</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Add animation delays to staggered elements
+        document.querySelectorAll('.challenge-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.component-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.flow-step').forEach((step, index) => {
+            step.style.transitionDelay = `${index * 0.05}s`;
+        });
+    </script>
+</body>
+</html>
