@@ -117,6 +117,9 @@ fadeElements.forEach(el => {
 
 const archCards = document.querySelectorAll('.arch-card');
 archCards.forEach((card, index) => {
+    // Skip first card (RAG) as it's now live
+    if (index === 0) return;
+
     card.addEventListener('click', (e) => {
         // Don't trigger if clicking on a link
         if (e.target.tagName === 'A') return;

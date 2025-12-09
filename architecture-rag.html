@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise RAG System | Georgios Sakellariou</title>
+    <meta name="description" content="Production-grade RAG architecture with intelligent caching, hybrid search, and multi-layer document processing for enterprise AI systems.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===================================
+           ARCHITECTURE PAGE STYLES
+           =================================== */
+
+        .arch-page {
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 90px;
+            left: var(--spacing-xl);
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all var(--transition-base);
+            backdrop-filter: blur(20px);
+        }
+
+        .back-button:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+            transform: translateX(-4px);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.25rem;
+            transition: transform var(--transition-base);
+        }
+
+        .back-button:hover::before {
+            transform: translateX(-2px);
+        }
+
+        /* Hero Section */
+        .arch-hero {
+            padding: calc(var(--spacing-3xl) + 80px) var(--spacing-xl) var(--spacing-3xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arch-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .arch-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .arch-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .arch-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 500;
+        }
+
+        .arch-hero .description {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .challenge-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .challenge-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gradient);
+            transform: scaleY(0);
+            transition: transform var(--transition-base);
+        }
+
+        .challenge-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .challenge-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .challenge-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .challenge-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Diagram Section */
+        .diagram-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .diagram-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .diagram-container {
+            margin-top: var(--spacing-xl);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            overflow-x: auto;
+        }
+
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            min-width: 600px;
+        }
+
+        .flow-stage {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .stage-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .flow-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .flow-component {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all var(--transition-base);
+            position: relative;
+        }
+
+        .flow-component:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .flow-component.highlight {
+            background: rgba(0, 212, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .component-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .component-subtitle {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* Color coding for stages */
+        .stage-ingestion .flow-component { border-left: 3px solid #0078D4; }
+        .stage-embedding .flow-component { border-left: 3px solid #8B5CF6; }
+        .stage-query .flow-component { border-left: 3px solid #10B981; }
+        .stage-llm .flow-component { border-left: 3px solid #EF4444; }
+
+        /* Components Grid */
+        .components-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .components-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .component-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .component-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .component-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .component-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .azure-service {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 120, 212, 0.1);
+            color: #0078D4;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .component-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Data Flow Section */
+        .dataflow-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .dataflow-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flow-timeline {
+            margin-top: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), transparent);
+        }
+
+        .flow-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .step-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+
+        .step-content:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateX(8px);
+        }
+
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-primary);
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .step-result {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid var(--success);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .step-example {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: var(--bg-elevated);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        /* Footer CTA */
+        .arch-footer {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .arch-footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .arch-footer h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .back-button {
+                left: var(--spacing-md);
+                top: 80px;
+            }
+
+            .arch-hero {
+                padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
+            }
+
+            .challenge-section,
+            .diagram-section,
+            .components-section,
+            .dataflow-section,
+            .arch-footer {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-step {
+                grid-template-columns: 50px 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .flow-step::before {
+                left: 25px;
+            }
+
+            .footer-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="arch-page">
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">GS</a>
+            <div class="nav-links">
+                <a href="index.html#work">Architectures</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back Button -->
+    <a href="index.html#work" class="back-button">Back to Portfolio</a>
+
+    <!-- Hero Section -->
+    <section class="arch-hero">
+        <div class="arch-hero-content fade-in">
+            <h1>Enterprise <span class="gradient-text">RAG System</span></h1>
+            <p class="subtitle">Intelligent Document Retrieval with Multi-Layer Caching</p>
+            <p class="description">
+                A production-grade RAG architecture that combines Azure AI Search with intelligent caching
+                strategies to deliver accurate document-based answers at scale. Designed for enterprise
+                environments requiring high throughput, low latency, and cost-efficient LLM operations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section class="challenge-section">
+        <div class="challenge-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The <span class="gradient-text">Challenge</span></h2>
+                <p class="section-subtitle">Key problems this architecture solves</p>
+            </div>
+
+            <div class="challenge-grid">
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">📚</div>
+                    <p>
+                        Enterprise knowledge scattered across thousands of documents (PDF, DOCX, internal wikis)
+                        making information discovery slow and inefficient.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">🔍</div>
+                    <p>
+                        Traditional keyword search misses semantic context and relationships between concepts,
+                        leading to incomplete or irrelevant results.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">⚠️</div>
+                    <p>
+                        Direct LLM queries without retrieval lead to hallucinations and incorrect information,
+                        undermining trust in AI-powered systems.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">💰</div>
+                    <p>
+                        High costs and slow response times when processing large document sets repeatedly,
+                        making enterprise deployments economically unfeasible.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagram Section -->
+    <section class="diagram-section">
+        <div class="diagram-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Architecture</span></h2>
+                <p class="section-subtitle">End-to-end data flow and components</p>
+            </div>
+
+            <div class="diagram-container fade-in">
+                <div class="diagram-flow">
+                    <!-- Stage 1: Document Ingestion -->
+                    <div class="flow-stage stage-ingestion">
+                        <div class="stage-title">📥 Document Ingestion</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Azure Blob Storage</div>
+                                <div class="component-subtitle">Document Repository</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Azure Functions</div>
+                                <div class="component-subtitle">Parsing & Chunking</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 2: Embedding & Indexing -->
+                    <div class="flow-stage stage-embedding">
+                        <div class="stage-title">🧮 Embedding & Indexing</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Azure OpenAI Embeddings</div>
+                                <div class="component-subtitle">text-embedding-3-large</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Azure AI Search</div>
+                                <div class="component-subtitle">Vector Database</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 3: Query Path -->
+                    <div class="flow-stage stage-query">
+                        <div class="stage-title">🎯 User Query Path</div>
+                        <div class="flow-components">
+                            <div class="flow-component highlight">
+                                <div class="component-title">Redis Cache</div>
+                                <div class="component-subtitle">Semantic Caching ⚡</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Hybrid Search</div>
+                                <div class="component-subtitle">Vector + BM25</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Re-ranking</div>
+                                <div class="component-subtitle">Cross-Encoder</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 4: LLM Processing -->
+                    <div class="flow-stage stage-llm">
+                        <div class="stage-title">🤖 LLM Processing</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">GPT-4 Turbo</div>
+                                <div class="component-subtitle">Context + Prompt</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Response Streaming</div>
+                                <div class="component-subtitle">Real-time Delivery</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section class="components-section">
+        <div class="components-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Components</span></h2>
+                <p class="section-subtitle">Technical building blocks and Azure services</p>
+            </div>
+
+            <div class="components-grid">
+                <div class="component-card fade-in">
+                    <div class="component-icon">📁</div>
+                    <h3>Document Storage</h3>
+                    <div class="azure-service">Azure Blob Storage</div>
+                    <p>
+                        Centralized repository for enterprise documents (PDF, DOCX, TXT). Supports versioning
+                        and metadata tagging for efficient organization.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">⚙️</div>
+                    <h3>Document Processing</h3>
+                    <div class="azure-service">Azure Functions</div>
+                    <p>
+                        Serverless parsing and chunking pipeline. Extracts text, splits into 1000-token
+                        segments with 200-token overlap, preserves document structure and metadata.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🧮</div>
+                    <h3>Vector Embeddings</h3>
+                    <div class="azure-service">Azure OpenAI Embeddings</div>
+                    <p>
+                        Converts text chunks into high-dimensional vectors capturing semantic meaning.
+                        Enables similarity-based retrieval beyond keyword matching.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🗄️</div>
+                    <h3>Hybrid Search Index</h3>
+                    <div class="azure-service">Azure AI Search</div>
+                    <p>
+                        Combines vector similarity search with BM25 keyword ranking. Provides both semantic
+                        understanding and exact term matching for optimal retrieval accuracy.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">⚡</div>
+                    <h3>Semantic Cache</h3>
+                    <div class="azure-service">Azure Cache for Redis</div>
+                    <p>
+                        Multi-tier caching strategy. Stores exact query matches and semantically similar
+                        queries to minimize redundant LLM calls and reduce response latency.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🤖</div>
+                    <h3>Language Model</h3>
+                    <div class="azure-service">Azure OpenAI (GPT-4 Turbo)</div>
+                    <p>
+                        Generates contextual answers using retrieved document chunks. Engineered prompts
+                        ensure grounded responses with source citations and minimal hallucination.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Flow Section -->
+    <section class="dataflow-section">
+        <div class="dataflow-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Data Flow: <span class="gradient-text">Question to Answer</span></h2>
+                <p class="section-subtitle">Step-by-step journey through the system</p>
+            </div>
+
+            <div class="flow-timeline">
+                <!-- Step 1 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">User Query Received</div>
+                        <div class="step-description">
+                            User submits a question through the interface.
+                        </div>
+                        <div class="step-example">
+                            "What is our company's remote work policy?"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Semantic Cache Check</div>
+                        <div class="step-description">
+                            System checks Redis cache for identical or similar questions using vector
+                            similarity threshold &gt; 0.95.
+                        </div>
+                        <div class="step-badge">Cache Hit: Instant Response</div>
+                        <div class="step-badge">Cache Miss: Continue</div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Hybrid Search Execution</div>
+                        <div class="step-description">
+                            Query converted to embedding, then searches Azure AI Search using both
+                            vector similarity and BM25 keyword matching.
+                        </div>
+                        <div class="step-result">20 candidate chunks retrieved</div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Document Retrieval & Re-ranking</div>
+                        <div class="step-description">
+                            Top 20 candidate chunks retrieved, then re-ranked using cross-encoder model
+                            to select most relevant chunks.
+                        </div>
+                        <div class="step-result">Top 5 chunks selected</div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Context Assembly & Prompt Construction</div>
+                        <div class="step-description">
+                            Selected chunks combined with engineered prompt template, includes instructions
+                            for grounding and source citation.
+                        </div>
+                        <div class="step-badge">~3000 tokens</div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">LLM Generation</div>
+                        <div class="step-description">
+                            GPT-4 processes prompt + context, generates answer with source references,
+                            streams response for better UX.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <div class="step-title">Response Caching</div>
+                        <div class="step-description">
+                            Final answer cached in Redis (both exact query and semantic embedding)
+                            for future reuse.
+                        </div>
+                        <div class="step-badge">TTL: 24 hours</div>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <div class="step-title">Answer Delivered</div>
+                        <div class="step-description">
+                            Structured response with answer text + source document citations returned to user.
+                        </div>
+                        <div class="step-example">
+                            "According to our Employee Handbook (Section 4.2), remote work is available
+                            2 days per week for eligible positions..."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="arch-footer">
+        <div class="arch-footer-content fade-in">
+            <h2>Interested in this <span class="gradient-text">Architecture?</span></h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">
+                Explore the full implementation on GitHub or get in touch to discuss enterprise deployment.
+            </p>
+
+            <div class="footer-buttons">
+                <a href="https://github.com/George-Sakellariou" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View GitHub Repository
+                </a>
+                <a href="index.html#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Georgios Sakellariou</p>
+            <p>AI & Cloud Solutions Architecture</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            fadeObserver.observe(el);
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.nav').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation delays to staggered elements
+        document.querySelectorAll('.challenge-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.component-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.flow-step').forEach((step, index) => {
+            step.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
