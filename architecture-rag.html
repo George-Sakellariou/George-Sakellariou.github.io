@@ -526,7 +526,9 @@
 
         /* Fade-in animations */
         .fade-in {
-            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.8s ease-out;
         }
 
         @keyframes fadeInUp {
@@ -538,11 +540,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
