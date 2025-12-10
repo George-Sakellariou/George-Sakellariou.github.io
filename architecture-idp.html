@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Document Processing Platform | Georgios Sakellariou</title>
+    <meta name="description" content="Universal AI-powered document extraction and automation platform with 99%+ accuracy across any industry. Enterprise-grade OCR, validation, and ERP integration.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===================================
+           ARCHITECTURE PAGE STYLES - IDP
+           PRIMARY ACCENT: ORANGE #F97316
+           =================================== */
+
+        .arch-page {
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        /* Orange Accent Override */
+        :root {
+            --accent-orange: #F97316;
+            --accent-orange-light: #FB923C;
+            --accent-orange-glow: rgba(249, 115, 22, 0.3);
+            --accent-orange-gradient: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 90px;
+            left: var(--spacing-xl);
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all var(--transition-base);
+            backdrop-filter: blur(20px);
+        }
+
+        .back-button:hover {
+            border-color: var(--accent-orange);
+            color: var(--text-primary);
+            transform: translateX(-4px);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.25rem;
+            transition: transform var(--transition-base);
+        }
+
+        .back-button:hover::before {
+            transform: translateX(-2px);
+        }
+
+        /* Hero Section */
+        .arch-hero {
+            padding: calc(var(--spacing-3xl) + 80px) var(--spacing-xl) var(--spacing-3xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arch-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 20%, var(--accent-orange-glow) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .arch-hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .arch-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .arch-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 500;
+        }
+
+        .arch-hero .description {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Orange gradient text */
+        .gradient-text {
+            background: var(--accent-orange-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .challenge-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .challenge-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-orange-gradient);
+            transform: scaleY(0);
+            transition: transform var(--transition-base);
+        }
+
+        .challenge-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .challenge-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .challenge-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(249, 115, 22, 0.1);
+            border-radius: 8px;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .challenge-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Diagram Section */
+        .diagram-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .diagram-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .diagram-container {
+            margin-top: var(--spacing-xl);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            overflow-x: auto;
+        }
+
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            min-width: 600px;
+        }
+
+        .flow-stage {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .stage-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .flow-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .flow-component {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all var(--transition-base);
+            position: relative;
+        }
+
+        .flow-component:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .flow-component.highlight {
+            background: rgba(249, 115, 22, 0.15);
+            border-color: rgba(249, 115, 22, 0.5);
+            box-shadow: 0 0 30px var(--accent-orange-glow);
+        }
+
+        .flow-component.highlight:hover {
+            background: rgba(249, 115, 22, 0.2);
+        }
+
+        .component-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .component-subtitle {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-orange);
+            font-size: 1.5rem;
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* Color coding for stages */
+        .stage-ingestion .flow-component { border-left: 3px solid #6B7280; }
+        .stage-ocr .flow-component { border-left: 3px solid #0078D4; }
+        .stage-extraction .flow-component { border-left: 3px solid #8B5CF6; }
+        .stage-validation .flow-component { border-left: 3px solid #10B981; }
+        .stage-hitl .flow-component { border-left: 3px solid #F97316; }
+        .stage-integration .flow-component { border-left: 3px solid #EF4444; }
+        .stage-governance .flow-component { border-left: 3px solid #EC4899; }
+
+        /* Components Grid */
+        .components-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .components-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .component-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .component-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .component-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .component-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .azure-service {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 120, 212, 0.1);
+            color: #0078D4;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .component-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Data Flow Section */
+        .dataflow-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .dataflow-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flow-timeline {
+            margin-top: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-orange), transparent);
+        }
+
+        .flow-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-orange-gradient);
+            color: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 20px var(--accent-orange-glow);
+        }
+
+        .step-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+
+        .step-content:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateX(8px);
+        }
+
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--accent-orange);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-right: var(--spacing-xs);
+            margin-top: var(--spacing-xs);
+        }
+
+        .step-details {
+            background: var(--bg-elevated);
+            border-radius: 6px;
+            padding: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+            font-size: 0.875rem;
+        }
+
+        .step-details ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .step-details li {
+            color: var(--text-tertiary);
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .step-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+        }
+
+        .step-result {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid var(--success);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .step-warning {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: rgba(249, 115, 22, 0.05);
+            border-left: 3px solid var(--accent-orange);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .step-code {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: var(--bg-primary);
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8125rem;
+            color: var(--accent-orange);
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        /* Industry Section */
+        .industry-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .industry-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .industry-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+
+        .industry-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .industry-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .industry-icon {
+            font-size: 2rem;
+        }
+
+        .industry-name {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+        }
+
+        .industry-usecases {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .industry-usecases ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .industry-usecases li {
+            color: var(--text-secondary);
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+            font-size: 0.9375rem;
+        }
+
+        .industry-usecases li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+        }
+
+        .industry-benefit {
+            padding: var(--spacing-sm);
+            background: rgba(249, 115, 22, 0.05);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Capabilities Section */
+        .capabilities-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .capabilities-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .capabilities-box {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(251, 146, 60, 0.1) 100%);
+            border: 2px solid rgba(249, 115, 22, 0.3);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+            margin-top: var(--spacing-xl);
+        }
+
+        .capabilities-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-orange-gradient);
+        }
+
+        .capabilities-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .capabilities-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        .capability-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Footer CTA */
+        .arch-footer {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .arch-footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .arch-footer h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Orange Button Override */
+        .btn-primary {
+            background: var(--accent-orange-gradient);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 20px var(--accent-orange-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px var(--accent-orange-glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .back-button {
+                left: var(--spacing-md);
+                top: 80px;
+            }
+
+            .arch-hero {
+                padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
+            }
+
+            .challenge-section,
+            .diagram-section,
+            .components-section,
+            .dataflow-section,
+            .industry-section,
+            .capabilities-section,
+            .arch-footer {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .industry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-step {
+                grid-template-columns: 50px 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .flow-step::before {
+                left: 25px;
+            }
+
+            .footer-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .capabilities-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="arch-page">
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">GS</a>
+            <div class="nav-links">
+                <a href="index.html#work">Architectures</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back Button -->
+    <a href="index.html#work" class="back-button">Back to Portfolio</a>
+
+    <!-- Hero Section -->
+    <section class="arch-hero">
+        <div class="arch-hero-content fade-in">
+            <h1><span class="gradient-text">Intelligent Document Processing</span></h1>
+            <p class="subtitle">Universal AI-Powered Extraction & Automation for Any Industry</p>
+            <p class="description">
+                Transform unstructured documents into actionable business data with 99%+ accuracy.
+                Enterprise-grade document intelligence that processes invoices, contracts, forms,
+                receipts, IDs, medical records, legal documents—any document type from any industry.
+                Built on Azure AI Document Intelligence with advanced validation, human-in-the-loop
+                workflows, and seamless ERP integration. Deploy in hours, not months—no custom
+                development required.
+            </p>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section class="challenge-section">
+        <div class="challenge-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The <span class="gradient-text">Challenge</span></h2>
+                <p class="section-subtitle">Critical barriers to document automation</p>
+            </div>
+
+            <div class="challenge-grid">
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">📄</div>
+                    <p>
+                        Manual data entry consumes 30-40% of knowledge worker time, creating bottlenecks
+                        that prevent scaling and costing enterprises millions in lost productivity annually.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">❌</div>
+                    <p>
+                        Human error rates in manual data entry reach 1-4%, causing costly mistakes in
+                        invoicing, compliance violations, incorrect payments, and requiring expensive rework.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">🗂️</div>
+                    <p>
+                        Documents arrive in countless formats (PDFs, images, scans, handwritten, emails)
+                        with inconsistent layouts—traditional OCR and template-based systems fail immediately.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">🔒</div>
+                    <p>
+                        Sensitive data (PII, PHI, financial records) requires strict compliance (GDPR,
+                        HIPAA, SOX), but legacy systems lack proper governance, audit trails, and security controls.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagram Section -->
+    <section class="diagram-section">
+        <div class="diagram-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Architecture</span></h2>
+                <p class="section-subtitle">7-layer intelligent document processing pipeline</p>
+            </div>
+
+            <div class="diagram-container fade-in">
+                <div class="diagram-flow">
+                    <!-- Stage 1: Document Ingestion -->
+                    <div class="flow-stage stage-ingestion">
+                        <div class="stage-title">📥 Multi-Channel Document Ingestion</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Azure Blob Storage</div>
+                                <div class="component-subtitle">Centralized Repository</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Email Integration</div>
+                                <div class="component-subtitle">Outlook • Gmail • SMTP</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">API Upload</div>
+                                <div class="component-subtitle">Web Portal • Mobile App</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 2: Intelligent OCR & Classification -->
+                    <div class="flow-stage stage-ocr">
+                        <div class="stage-title">🔍 AI-Powered OCR & Document Classification</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Azure Document Intelligence</div>
+                                <div class="component-subtitle">99%+ OCR Accuracy • 100+ Languages</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Document Classifier</div>
+                                <div class="component-subtitle">Auto-Type Detection • 20+ Pre-trained Models</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 3: Data Extraction Engine -->
+                    <div class="flow-stage stage-extraction">
+                        <div class="stage-title">⚙️ Multi-Model Extraction Engine</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Pre-Built Models</div>
+                                <div class="component-subtitle">Invoices • Receipts • IDs • Tax Forms</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Custom Neural Models</div>
+                                <div class="component-subtitle">Industry-Specific Documents</div>
+                            </div>
+                            <div class="flow-component highlight">
+                                <div class="component-title">Layout Analysis</div>
+                                <div class="component-subtitle">Tables • Checkboxes • Signatures</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 4: Intelligent Validation -->
+                    <div class="flow-stage stage-validation">
+                        <div class="stage-title">✓ AI-Powered Validation Layer</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">GPT-5 Semantic Validation</div>
+                                <div class="component-subtitle">Logic Checks • Cross-Field Validation</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Confidence Scoring</div>
+                                <div class="component-subtitle">Field-Level Quality Metrics</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Business Rules Engine</div>
+                                <div class="component-subtitle">Custom Validation Logic</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 5: Human-in-the-Loop -->
+                    <div class="flow-stage stage-hitl">
+                        <div class="stage-title">👤 Human-in-the-Loop Workflow</div>
+                        <div class="flow-components">
+                            <div class="flow-component highlight">
+                                <div class="component-title">Confidence Threshold Routing</div>
+                                <div class="component-subtitle">< 95% Confidence → Manual Review</div>
+                            </div>
+                            <div class="flow-component highlight">
+                                <div class="component-title">Review Dashboard</div>
+                                <div class="component-subtitle">Web Interface • Mobile • Power Apps</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 6: Data Enrichment & Integration -->
+                    <div class="flow-stage stage-integration">
+                        <div class="stage-title">🔗 Enterprise System Integration</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">SAP Integration</div>
+                                <div class="component-subtitle">ERP Push</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Dynamics 365</div>
+                                <div class="component-subtitle">CRM Sync</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Power Automate</div>
+                                <div class="component-subtitle">Workflow Orchestration</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Custom APIs</div>
+                                <div class="component-subtitle">REST/Webhooks</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 7: Governance & Monitoring -->
+                    <div class="flow-stage stage-governance">
+                        <div class="stage-title">🛡️ Security, Compliance & Audit Trail</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">PII/PHI Detection</div>
+                                <div class="component-subtitle">Auto-Redaction • Masking</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Complete Audit Log</div>
+                                <div class="component-subtitle">Who • What • When • Changes</div>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Compliance Reports</div>
+                                <div class="component-subtitle">GDPR • HIPAA • SOX</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section class="components-section">
+        <div class="components-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Components</span></h2>
+                <p class="section-subtitle">Eight pillars of enterprise document intelligence</p>
+            </div>
+
+            <div class="components-grid">
+                <div class="component-card fade-in">
+                    <div class="component-icon">🔍</div>
+                    <h3>Azure Document Intelligence OCR</h3>
+                    <div class="azure-service">Azure AI Document Intelligence</div>
+                    <p>
+                        Industry-leading OCR with 99%+ accuracy across 100+ languages. Handles
+                        printed text, handwriting, complex layouts, tables, checkboxes, and signatures. Supports
+                        PDFs, images (JPG, PNG, TIFF), scans, and office documents (DOCX, XLSX). Processes 2,000
+                        pages in a single operation with automatic page orientation correction.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🤖</div>
+                    <h3>Pre-Built Document Models</h3>
+                    <div class="azure-service">20+ Pre-trained Models</div>
+                    <p>
+                        Zero-training deployment with models for invoices, receipts, business cards,
+                        IDs (passports, driver licenses), tax forms (W-2, 1099, 1040), health insurance cards,
+                        bank statements, contracts, and mortgage documents. Extracts 50+ field types automatically
+                        with confidence scores per field.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🧠</div>
+                    <h3>Custom Neural Document Models</h3>
+                    <div class="azure-service">Azure Document Intelligence Custom</div>
+                    <p>
+                        Train custom models for industry-specific documents (legal contracts, medical
+                        records, logistics forms, energy reports) using just 5 sample documents. Neural architecture
+                        adapts to layout variations without rigid templates. Supports overlapping fields, signature
+                        detection, and table cell-level confidence scoring.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🎯</div>
+                    <h3>Intelligent Document Classification</h3>
+                    <div class="azure-service">Azure Custom Classifier</div>
+                    <p>
+                        Automatically identifies document types in mixed batches. Handles multi-document
+                        packets (email with 3 attachments → classifies each separately). Incremental training allows
+                        adding new document classes without retraining entire model. Routes documents to appropriate
+                        extraction pipeline.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">✓</div>
+                    <h3>AI Semantic Validation</h3>
+                    <div class="azure-service">Azure OpenAI GPT-5</div>
+                    <p>
+                        GPT-5 validates extracted data makes business sense. Detects logic errors
+                        ('invoice total doesn't match line items'), impossible dates ('expiry date before issue date'),
+                        formatting issues. Cross-references fields for consistency. Provides natural language
+                        explanations for flagged items.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">👤</div>
+                    <h3>Human-in-the-Loop Framework</h3>
+                    <div class="azure-service">Power Apps + Custom Review Portal</div>
+                    <p>
+                        Confidence-based routing: <95% confidence → manual review queue. Web-based
+                        validation interface with side-by-side document view and extracted fields. Mobile app for
+                        approvals. Active learning: corrections improve model accuracy over time. Audit trail of
+                        human reviews.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🔗</div>
+                    <h3>Enterprise System Connectors</h3>
+                    <div class="azure-service">Power Automate + Logic Apps</div>
+                    <p>
+                        Pre-built integrations: SAP, Dynamics 365, Salesforce, Oracle, NetSuite,
+                        QuickBooks, Workday. Custom webhooks and REST APIs for proprietary systems. Real-time sync
+                        or batch processing. Error handling with retry logic. Supports bi-directional data flow
+                        for status updates.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🛡️</div>
+                    <h3>Compliance & Governance Engine</h3>
+                    <div class="azure-service">Azure Purview + Custom DLP</div>
+                    <p>
+                        Automatic PII/PHI detection with configurable masking rules. Complete audit
+                        trail (document received → extracted → validated → pushed to ERP). Compliance reports for
+                        GDPR, HIPAA, SOX, CCPA. Role-based access control (RBAC). Data retention policies with
+                        auto-deletion after configurable periods.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Flow Section -->
+    <section class="dataflow-section">
+        <div class="dataflow-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Data Flow: <span class="gradient-text">Document to Enterprise System</span></h2>
+                <p class="section-subtitle">9-step journey from upload to ERP integration</p>
+            </div>
+
+            <div class="flow-timeline">
+                <!-- Step 1 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Multi-Channel Document Reception</div>
+                        <div class="step-description">
+                            Document arrives via email attachment (sales invoice from vendor to
+                            procurement@company.com), uploaded through web portal, scanned via mobile app, or
+                            bulk imported from shared drive.
+                        </div>
+                        <div class="step-code">Document: 'Vendor_Invoice_2024_Q4.pdf'
+Pages: 3
+Format: PDF (scanned image)</div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">OCR & Text Extraction</div>
+                        <div class="step-description">
+                            Azure Document Intelligence Read API extracts all text with 99.2% accuracy.
+                            Handles multi-column layouts, detects language (English), preserves table structures,
+                            identifies handwritten signatures and notes.
+                        </div>
+                        <div class="step-result">
+                            ✓ 847 words extracted<br>
+                            ✓ 2 tables detected (line items + totals)<br>
+                            ✓ 1 signature identified<br>
+                            Processing time: 2.3 seconds
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Automated Document Classification</div>
+                        <div class="step-description">
+                            Custom classifier analyzes document structure and content to identify type.
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Content analysis: "INVOICE" header detected</li>
+                                <li>Layout pattern: Vendor info top-left, line items table, totals bottom-right</li>
+                                <li>Classification: Invoice (confidence: 98.7%)</li>
+                                <li>Route to: Invoice extraction pipeline</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Intelligent Field Extraction</div>
+                        <div class="step-description">
+                            Pre-built Invoice model extracts 50+ fields using learned document understanding.
+                        </div>
+                        <div class="step-details">
+                            <strong>Key fields extracted:</strong>
+                            <ul>
+                                <li>Invoice Number: INV-2024-09876</li>
+                                <li>Invoice Date: 2024-11-15</li>
+                                <li>Vendor: ACME Supplies Inc.</li>
+                                <li>Vendor Address: 123 Main St, Seattle, WA</li>
+                                <li>Total Amount: $12,847.50</li>
+                                <li>Currency: USD</li>
+                                <li>Due Date: 2024-12-15</li>
+                                <li>Payment Terms: Net 30</li>
+                                <li>Line Items: 12 products (quantities, prices, descriptions)</li>
+                                <li>Tax Amount: $1,047.50</li>
+                            </ul>
+                        </div>
+                        <div class="step-badge">50 fields extracted</div>
+                        <div class="step-badge">96.8% avg confidence</div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">GPT-5 Semantic Validation</div>
+                        <div class="step-description">
+                            AI validates extracted data for logical consistency and business rules.
+                        </div>
+                        <div class="step-details">
+                            <strong>Validation checks performed:</strong>
+                            <ul>
+                                <li>✓ Invoice date is before due date</li>
+                                <li>✓ Line item subtotals match total amount</li>
+                                <li>✓ Tax calculation correct (8.15% = $1,047.50)</li>
+                                <li>✓ Vendor exists in approved vendor list</li>
+                                <li>⚠️ Warning: Amount exceeds $10,000 threshold → Requires manager approval</li>
+                                <li>✓ No duplicate invoice number in system</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">Validation passed with 1 business rule trigger</div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">Human-in-the-Loop Review Triggered</div>
+                        <div class="step-description">
+                            Business rule: invoices >$10,000 require manual approval before processing.
+                        </div>
+                        <div class="step-warning">
+                            <strong>⚠️ Review Required</strong><br>
+                            Reason: Invoice amount ($12,847.50) exceeds auto-approval threshold ($10,000)<br>
+                            Assigned to: Finance Manager (jane.smith@company.com)<br>
+                            Due: 24 hours
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <div class="step-title">Manager Review & Approval</div>
+                        <div class="step-description">
+                            Finance manager reviews invoice in web portal, sees extracted data side-by-side
+                            with original document.
+                        </div>
+                        <div class="step-details">
+                            <strong>Review actions:</strong>
+                            <ul>
+                                <li>Verified vendor contract terms: Net 30 ✓</li>
+                                <li>Cross-checked PO number: Matches PO-2024-5432 ✓</li>
+                                <li>Confirmed delivery receipt in system ✓</li>
+                                <li>Approved for payment</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">Review time: 3 minutes</div>
+                        <div class="step-badge">Approved</div>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <div class="step-title">ERP System Integration</div>
+                        <div class="step-description">
+                            Validated data pushed to SAP via Power Automate workflow.
+                        </div>
+                        <div class="step-details">
+                            <strong>ERP integration:</strong>
+                            <ul>
+                                <li>System: SAP S/4HANA</li>
+                                <li>Action: Create invoice record + payment schedule</li>
+                                <li>Document number: 5100123456</li>
+                                <li>GL Account: 2100-Accounts Payable</li>
+                                <li>Cost center: 3000-Operations</li>
+                                <li>Status: Pending payment (due 2024-12-15)</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">✓ Successfully created in SAP in 1.8 seconds</div>
+                    </div>
+                </div>
+
+                <!-- Step 9 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <div class="step-title">Audit Trail & Compliance Logging</div>
+                        <div class="step-description">
+                            Complete processing history recorded for compliance and future reference.
+                        </div>
+                        <div class="step-details">
+                            <strong>Audit log entry:</strong>
+                            <ul>
+                                <li>Document ID: DOC-2024-11-98765</li>
+                                <li>Received: 2024-11-16 08:23:14 UTC</li>
+                                <li>Processed by: IDP Pipeline v4.2</li>
+                                <li>Extracted by: Azure Document Intelligence</li>
+                                <li>Validated by: GPT-5 Semantic Validator</li>
+                                <li>Reviewed by: jane.smith@company.com (2024-11-16 09:15:22 UTC)</li>
+                                <li>Approved: Yes</li>
+                                <li>Pushed to: SAP (2024-11-16 09:18:45 UTC)</li>
+                                <li>Retention: 7 years (per SOX compliance)</li>
+                                <li>PII detected: None</li>
+                            </ul>
+                        </div>
+                        <div class="step-badge">GDPR Compliant</div>
+                        <div class="step-badge">SOX Compliant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Versatility Section -->
+    <section class="industry-section">
+        <div class="industry-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">One Platform, <span class="gradient-text">Every Industry</span></h2>
+                <p class="section-subtitle">Universal document intelligence that adapts to your domain</p>
+            </div>
+
+            <div class="industry-grid">
+                <div class="industry-card fade-in">
+                    <div class="industry-header">
+                        <div class="industry-icon">💰</div>
+                        <div class="industry-name">FINANCIAL SERVICES</div>
+                    </div>
+                    <div class="industry-usecases">
+                        <ul>
+                            <li>Loan applications & KYC documents</li>
+                            <li>Bank statements & financial records</li>
+                            <li>Insurance claims & policy forms</li>
+                            <li>Compliance reporting & audit documents</li>
+                        </ul>
+                    </div>
+                    <div class="industry-benefit">
+                        95% faster loan processing, 99.8% accuracy on financial data
+                    </div>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <div class="industry-header">
+                        <div class="industry-icon">🏥</div>
+                        <div class="industry-name">HEALTHCARE</div>
+                    </div>
+                    <div class="industry-usecases">
+                        <ul>
+                            <li>Patient intake forms & medical histories</li>
+                            <li>Insurance claims (UB-04, CMS-1500)</li>
+                            <li>Lab reports & diagnostic results</li>
+                            <li>Prescription processing & medication orders</li>
+                        </ul>
+                    </div>
+                    <div class="industry-benefit">
+                        HIPAA-compliant automation, 70% reduction in admin time
+                    </div>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <div class="industry-header">
+                        <div class="industry-icon">⚖️</div>
+                        <div class="industry-name">LEGAL SERVICES</div>
+                    </div>
+                    <div class="industry-usecases">
+                        <ul>
+                            <li>Contracts & legal agreements</li>
+                            <li>Court documents & case files</li>
+                            <li>Discovery documents & evidence</li>
+                            <li>Client intake forms & engagement letters</li>
+                        </ul>
+                    </div>
+                    <div class="industry-benefit">
+                        Process 10,000+ pages/hour, extract 500+ clause types
+                    </div>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <div class="industry-header">
+                        <div class="industry-icon">📦</div>
+                        <div class="industry-name">LOGISTICS & SUPPLY CHAIN</div>
+                    </div>
+                    <div class="industry-usecases">
+                        <ul>
+                            <li>Bills of lading & shipping manifests</li>
+                            <li>Customs documents & trade compliance</li>
+                            <li>Delivery confirmations & proof of delivery</li>
+                            <li>Purchase orders & packing slips</li>
+                        </ul>
+                    </div>
+                    <div class="industry-benefit">
+                        Real-time shipment tracking, 99% customs accuracy
+                    </div>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <div class="industry-header">
+                        <div class="industry-icon">🛒</div>
+                        <div class="industry-name">RETAIL & E-COMMERCE</div>
+                    </div>
+                    <div class="industry-usecases">
+                        <ul>
+                            <li>Supplier invoices & purchase orders</li>
+                            <li>Product receipts & returns</li>
+                            <li>Vendor contracts & agreements</li>
+                            <li>Customer ID verification</li>
+                        </ul>
+                    </div>
+                    <div class="industry-benefit">
+                        Automate AP/AR, 80% cost reduction in manual data entry
+                    </div>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <div class="industry-header">
+                        <div class="industry-icon">🏛️</div>
+                        <div class="industry-name">GOVERNMENT & PUBLIC SECTOR</div>
+                    </div>
+                    <div class="industry-usecases">
+                        <ul>
+                            <li>Permit applications & licenses</li>
+                            <li>Tax forms & declarations</li>
+                            <li>Citizen ID documents & certificates</li>
+                            <li>Grant applications & compliance reports</li>
+                        </ul>
+                    </div>
+                    <div class="industry-benefit">
+                        24/7 citizen service, 10x faster application processing
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Capabilities Section -->
+    <section class="capabilities-section">
+        <div class="capabilities-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">What Sets This <span class="gradient-text">Apart</span></h2>
+                <p class="section-subtitle">Enterprise features that ensure production success</p>
+            </div>
+
+            <div class="capabilities-box fade-in">
+                <p class="capabilities-text">
+                    Unlike basic OCR tools that fail on document variations, this platform combines
+                    Azure's battle-tested Document Intelligence with intelligent validation, human oversight,
+                    and enterprise integration. The result: 99%+ accuracy across any document type, any
+                    industry, with zero custom coding required. Deploy in hours using pre-built models,
+                    or train custom extractors with just 5 sample documents. Built-in HITL workflows ensure
+                    confidence in automation while maintaining human control where it matters. Complete audit
+                    trails, PII detection, and compliance reporting make this enterprise-ready from day one.
+                </p>
+
+                <div class="capabilities-features">
+                    <div class="capability-badge">Zero-template design</div>
+                    <div class="capability-badge">20+ pre-trained models</div>
+                    <div class="capability-badge">Custom models from 5 samples</div>
+                    <div class="capability-badge">100+ language support</div>
+                    <div class="capability-badge">99%+ accuracy guarantee</div>
+                    <div class="capability-badge">Human-in-the-loop built-in</div>
+                    <div class="capability-badge">Enterprise integration included</div>
+                    <div class="capability-badge">GDPR/HIPAA compliant</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="arch-footer">
+        <div class="arch-footer-content fade-in">
+            <h2>Interested in this <span class="gradient-text">Architecture?</span></h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">
+                Explore the implementation on GitHub or discuss enterprise deployment.
+            </p>
+
+            <div class="footer-buttons">
+                <a href="https://github.com/George-Sakellariou" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View GitHub Repository
+                </a>
+                <a href="index.html#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Georgios Sakellariou</p>
+            <p>AI & Cloud Solutions Architecture</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Add animation delays to staggered elements
+        document.querySelectorAll('.challenge-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.component-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.flow-step').forEach((step, index) => {
+            step.style.transitionDelay = `${index * 0.05}s`;
+        });
+
+        document.querySelectorAll('.industry-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
