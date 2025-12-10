@@ -22,6 +22,34 @@
             min-height: 100vh;
         }
 
+        /* Amber/Yellow Accent Override */
+        :root {
+            --accent-amber: #F59E0B;
+            --accent-amber-light: #FBBF24;
+            --accent-amber-glow: rgba(245, 158, 11, 0.3);
+            --accent-amber-gradient: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+        }
+
+        .gradient-text {
+            background: var(--accent-amber-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .flow-arrow {
+            color: var(--accent-amber);
+        }
+
+        .step-number {
+            background: var(--accent-amber-gradient);
+            box-shadow: 0 4px 20px var(--accent-amber-glow);
+        }
+
+        .flow-step::before {
+            background: linear-gradient(to bottom, var(--accent-amber), transparent);
+        }
+
         /* Back Button */
         .back-button {
             position: fixed;
@@ -74,7 +102,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -164,7 +192,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 212, 255, 0.1);
+            background: rgba(245, 158, 11, 0.1);
             border-radius: 8px;
             font-size: 1.5rem;
             margin-bottom: var(--spacing-md);
@@ -477,8 +505,8 @@
             display: inline-block;
             font-size: 0.75rem;
             padding: 0.25rem 0.75rem;
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--accent-primary);
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-amber);
             border-radius: 50px;
             font-weight: 600;
             margin-right: var(--spacing-xs);
@@ -553,8 +581,8 @@
         .step-cost {
             margin-top: var(--spacing-sm);
             padding: var(--spacing-sm);
-            background: rgba(0, 212, 255, 0.05);
-            border-left: 3px solid var(--accent-primary);
+            background: rgba(245, 158, 11, 0.05);
+            border-left: 3px solid var(--accent-amber);
             border-radius: 4px;
             font-size: 0.875rem;
             color: var(--text-secondary);
@@ -710,8 +738,8 @@
         }
 
         .callout-box {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
             border-radius: 16px;
             padding: var(--spacing-xl);
             position: relative;
@@ -725,7 +753,7 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--accent-gradient);
+            background: var(--accent-amber-gradient);
         }
 
         .callout-title {
@@ -848,7 +876,7 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">GS</a>
+            <a href="index.html" class="nav-logo">George Sakellariou</a>
             <div class="nav-links">
                 <a href="index.html#work">Architectures</a>
                 <a href="index.html#about">About</a>
