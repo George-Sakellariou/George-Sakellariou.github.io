@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal AI Insights Platform | Georgios Sakellariou</title>
+    <meta name="description" content="Intelligent multi-model orchestration platform for cross-industry analytics with cost-optimized AI routing, reducing operational costs by 75% while maintaining enterprise-grade accuracy.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===================================
+           ARCHITECTURE PAGE STYLES
+           =================================== */
+
+        .arch-page {
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 90px;
+            left: var(--spacing-xl);
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all var(--transition-base);
+            backdrop-filter: blur(20px);
+        }
+
+        .back-button:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+            transform: translateX(-4px);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.25rem;
+            transition: transform var(--transition-base);
+        }
+
+        .back-button:hover::before {
+            transform: translateX(-2px);
+        }
+
+        /* Hero Section */
+        .arch-hero {
+            padding: calc(var(--spacing-3xl) + 80px) var(--spacing-xl) var(--spacing-3xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arch-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .arch-hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .arch-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .arch-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 500;
+        }
+
+        .arch-hero .description {
+            font-size: 1.125rem;
+            color: var(--text-tertiary);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .challenge-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .challenge-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gradient);
+            transform: scaleY(0);
+            transition: transform var(--transition-base);
+        }
+
+        .challenge-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .challenge-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .challenge-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 8px;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .challenge-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Diagram Section */
+        .diagram-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .diagram-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .diagram-container {
+            margin-top: var(--spacing-xl);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            overflow-x: auto;
+        }
+
+        .diagram-flow {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+            min-width: 600px;
+        }
+
+        .flow-stage {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .stage-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .flow-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .flow-component {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            text-align: center;
+            transition: all var(--transition-base);
+            position: relative;
+        }
+
+        .flow-component:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .flow-component.highlight {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .flow-component.highlight:hover {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .component-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+
+        .component-subtitle {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+
+        .component-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-xs) 0 0 0;
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+        }
+
+        .component-list li {
+            padding: 0.25rem 0;
+        }
+
+        .flow-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin: var(--spacing-sm) 0;
+        }
+
+        /* Tier boxes */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .tier-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-sm);
+            text-align: center;
+        }
+
+        .tier-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .tier-cost {
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .tier-model {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            margin-top: 0.25rem;
+        }
+
+        /* Color coding for stages */
+        .stage-semantic .flow-component { border-left: 3px solid #0078D4; }
+        .stage-integration .flow-component { border-left: 3px solid #6B7280; }
+        .stage-router .flow-component { border-left: 3px solid #8B5CF6; }
+        .stage-analytics .flow-component { border-left: 3px solid #10B981; }
+        .stage-viz .flow-component { border-left: 3px solid #F59E0B; }
+        .stage-cost .flow-component { border-left: 3px solid #00d4ff; }
+        .stage-collab .flow-component { border-left: 3px solid #EC4899; }
+
+        /* Components Grid */
+        .components-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .components-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .component-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .component-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .component-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .component-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .azure-service {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 120, 212, 0.1);
+            color: #0078D4;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .component-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Data Flow Section */
+        .dataflow-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .dataflow-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flow-timeline {
+            margin-top: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), transparent);
+        }
+
+        .flow-step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            color: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .step-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+
+        .step-content:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateX(8px);
+        }
+
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .step-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent-primary);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-right: var(--spacing-xs);
+            margin-top: var(--spacing-xs);
+        }
+
+        .step-tier {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-right: var(--spacing-xs);
+            margin-top: var(--spacing-xs);
+        }
+
+        .step-tier.fast { background: rgba(0, 255, 136, 0.1); color: var(--success); }
+        .step-tier.standard { background: rgba(255, 170, 0, 0.1); color: var(--warning); }
+        .step-tier.complex { background: rgba(239, 68, 68, 0.1); color: #EF4444; }
+        .step-tier.advanced { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
+
+        .step-details {
+            background: var(--bg-elevated);
+            border-radius: 6px;
+            padding: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+            font-size: 0.875rem;
+        }
+
+        .step-details ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .step-details li {
+            color: var(--text-tertiary);
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .step-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        .step-result {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid var(--success);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .step-code {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: var(--bg-primary);
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8125rem;
+            color: var(--accent-primary);
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .step-cost {
+            margin-top: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Industry Adaptability Section */
+        .industry-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .industry-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .industry-grid {
+            display: grid;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .industry-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+
+        .industry-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateX(4px);
+        }
+
+        .industry-name {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--accent-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .industry-query {
+            font-style: italic;
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.9375rem;
+        }
+
+        .industry-details {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+
+        .industry-details ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-xs) 0 0 0;
+        }
+
+        .industry-details li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .industry-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        /* Cost Optimization Section */
+        .cost-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .cost-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cost-comparison {
+            margin-top: var(--spacing-xl);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+        }
+
+        .comparison-header {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .comparison-row {
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .comparison-details {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .savings-highlight {
+            margin-top: var(--spacing-lg);
+            padding: var(--spacing-lg);
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .savings-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .savings-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Callout Box */
+        .callout-section {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-secondary);
+        }
+
+        .callout-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .callout-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 255, 0.1) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .callout-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-gradient);
+        }
+
+        .callout-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-primary);
+        }
+
+        .callout-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        /* Footer CTA */
+        .arch-footer {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+        }
+
+        .arch-footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .arch-footer h2 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .back-button {
+                left: var(--spacing-md);
+                top: 80px;
+            }
+
+            .arch-hero {
+                padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
+            }
+
+            .challenge-section,
+            .diagram-section,
+            .components-section,
+            .dataflow-section,
+            .industry-section,
+            .cost-section,
+            .callout-section,
+            .arch-footer {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tier-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .flow-step {
+                grid-template-columns: 50px 1fr;
+                gap: var(--spacing-md);
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .flow-step::before {
+                left: 25px;
+            }
+
+            .footer-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="arch-page">
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">GS</a>
+            <div class="nav-links">
+                <a href="index.html#work">Architectures</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Back Button -->
+    <a href="index.html#work" class="back-button">Back to Portfolio</a>
+
+    <!-- Hero Section -->
+    <section class="arch-hero">
+        <div class="arch-hero-content fade-in">
+            <h1><span class="gradient-text">Universal AI Insights Platform</span></h1>
+            <p class="subtitle">Intelligent Multi-Model Orchestration for Cross-Industry Analytics</p>
+            <p class="description">
+                An adaptive analytics engine powered by intelligent LLM routing that delivers instant insights across any industry—from retail to healthcare, finance to manufacturing. Features unified semantic layer, automated KPI discovery, predictive forecasting, and cost-optimized AI orchestration that routes simple queries to GPT-4 Mini and complex analysis to GPT-o3, reducing operational costs by 75% while maintaining enterprise-grade accuracy.
+            </p>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section class="challenge-section">
+        <div class="challenge-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The <span class="gradient-text">Challenge</span></h2>
+                <p class="section-subtitle">Critical barriers to universal analytics adoption</p>
+            </div>
+
+            <div class="challenge-grid">
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">🔒</div>
+                    <p>
+                        Analytics platforms are industry-specific and require extensive customization - what works for retail doesn't work for healthcare, creating silos.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">⏳</div>
+                    <p>
+                        Business teams need instant insights but data teams are bottlenecked - weeks of dashboard building for questions that should take seconds.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">💸</div>
+                    <p>
+                        AI costs spiral out of control when using GPT-4 for everything - even simple queries consume expensive tokens unnecessarily.
+                    </p>
+                </div>
+
+                <div class="challenge-card fade-in">
+                    <div class="challenge-icon">📊</div>
+                    <p>
+                        No single source of truth - different departments use different KPI definitions causing conflicting reports and decision paralysis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagram Section -->
+    <section class="diagram-section">
+        <div class="diagram-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Architecture</span></h2>
+                <p class="section-subtitle">Intelligent universal platform with cost-optimized AI routing</p>
+            </div>
+
+            <div class="diagram-container fade-in">
+                <div class="diagram-flow">
+                    <!-- Stage 1: Universal Semantic Layer -->
+                    <div class="flow-stage stage-semantic">
+                        <div class="stage-title">🌐 Universal Semantic Layer (Industry-Agnostic)</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Business Glossary</div>
+                                <div class="component-subtitle">Context-Aware Metrics</div>
+                                <ul class="component-list">
+                                    <li>"Revenue" adapts by industry</li>
+                                    <li>"Customer" → B2C/B2B/Patient</li>
+                                    <li>"Conversion" → Sales/Admissions</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Industry Templates</div>
+                                <div class="component-subtitle">Pre-built Analytics</div>
+                                <ul class="component-list">
+                                    <li>Retail • Healthcare • Finance</li>
+                                    <li>Manufacturing • SaaS • Logistics</li>
+                                    <li>15+ verticals ready</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 2: Data Integration -->
+                    <div class="flow-stage stage-integration">
+                        <div class="stage-title">🔗 Data Integration Layer</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Universal Connectors</div>
+                                <div class="component-subtitle">Azure Services</div>
+                                <ul class="component-list">
+                                    <li>Synapse • Cosmos DB • SQL</li>
+                                    <li>Blob Storage • Fabric OneLake</li>
+                                    <li>Power BI • Microsoft 365</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Real-Time Streaming</div>
+                                <div class="component-subtitle">Azure Event Hub</div>
+                                <ul class="component-list">
+                                    <li>IoT sensors</li>
+                                    <li>Transaction logs</li>
+                                    <li>User events</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 3: Intelligent Query Orchestration (CORE) -->
+                    <div class="flow-stage stage-router">
+                        <div class="stage-title">🧠 Intelligent Query Orchestration (The AI Router Brain)</div>
+                        <div class="flow-component highlight">
+                            <div class="component-title">INTELLIGENT ROUTER</div>
+                            <div class="component-subtitle">Semantic Kernel • Query Complexity Analysis</div>
+                            <ul class="component-list">
+                                <li>Intent Classification</li>
+                                <li>Model Selection Logic</li>
+                                <li>Cost-Benefit Calculation</li>
+                            </ul>
+                        </div>
+                        <div class="tier-grid">
+                            <div class="tier-box">
+                                <div class="tier-name">FAST TIER</div>
+                                <div class="tier-cost">€0.001</div>
+                                <div class="tier-model">GPT-4 Turbo<br>Simple lookups</div>
+                            </div>
+                            <div class="tier-box">
+                                <div class="tier-name">STANDARD TIER</div>
+                                <div class="tier-cost">€0.015</div>
+                                <div class="tier-model">GPT-4.1 Mini<br>Time-series</div>
+                            </div>
+                            <div class="tier-box">
+                                <div class="tier-name">COMPLEX TIER</div>
+                                <div class="tier-cost">€0.030</div>
+                                <div class="tier-model">GPT-5<br>Multi-step</div>
+                            </div>
+                            <div class="tier-box">
+                                <div class="tier-name">ADVANCED TIER</div>
+                                <div class="tier-cost">€0.120</div>
+                                <div class="tier-model">GPT-o3 Deep<br>Forecasting</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 4: Analytics Engine -->
+                    <div class="flow-stage stage-analytics">
+                        <div class="stage-title">📈 Analytics Engine Layer</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Automated Insights</div>
+                                <div class="component-subtitle">Pattern Recognition</div>
+                                <ul class="component-list">
+                                    <li>Anomaly Detection</li>
+                                    <li>Correlation Discovery</li>
+                                    <li>Trend Identification</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Predictive Analytics</div>
+                                <div class="component-subtitle">Azure ML</div>
+                                <ul class="component-list">
+                                    <li>Time-series forecasting</li>
+                                    <li>Classification models</li>
+                                    <li>What-if scenarios</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">KPI Auto-Discovery</div>
+                                <div class="component-subtitle">Intelligent Detection</div>
+                                <ul class="component-list">
+                                    <li>Scans data for metrics</li>
+                                    <li>Industry-specific KPIs</li>
+                                    <li>Auto-creates dashboards</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 5: Adaptive Visualization -->
+                    <div class="flow-stage stage-viz">
+                        <div class="stage-title">📊 Adaptive Visualization Engine</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Industry Dashboards</div>
+                                <div class="component-subtitle">50+ Templates</div>
+                                <ul class="component-list">
+                                    <li>Retail: Sales velocity</li>
+                                    <li>Healthcare: Patient outcomes</li>
+                                    <li>Finance: Risk metrics</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Smart Chart Selection</div>
+                                <div class="component-subtitle">Azure OpenAI GPT-4V</div>
+                                <ul class="component-list">
+                                    <li>Optimal visualization</li>
+                                    <li>Responsive layouts</li>
+                                    <li>Interactive drill-downs</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Natural Language</div>
+                                <div class="component-subtitle">Insight Summaries</div>
+                                <ul class="component-list">
+                                    <li>Executive summaries</li>
+                                    <li>Automated narratives</li>
+                                    <li>Contextual explanations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 6: Cost Optimization -->
+                    <div class="flow-stage stage-cost">
+                        <div class="stage-title">💰 Cost Optimization & Monitoring</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Real-Time Tracking</div>
+                                <div class="component-subtitle">Cost Intelligence</div>
+                                <ul class="component-list">
+                                    <li>Token usage per query</li>
+                                    <li>Model efficiency</li>
+                                    <li>Cost per insight</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Smart Caching</div>
+                                <div class="component-subtitle">Azure Redis</div>
+                                <ul class="component-list">
+                                    <li>Semantic similarity</li>
+                                    <li>Auto-refresh</li>
+                                    <li>99% savings on repeats</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Budget Controls</div>
+                                <div class="component-subtitle">Alerts & Limits</div>
+                                <ul class="component-list">
+                                    <li>Spending limits</li>
+                                    <li>Threshold alerts</li>
+                                    <li>Auto tier downgrade</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <!-- Stage 7: Collaboration -->
+                    <div class="flow-stage stage-collab">
+                        <div class="stage-title">👥 Collaboration & Sharing</div>
+                        <div class="flow-components">
+                            <div class="flow-component">
+                                <div class="component-title">Distribution</div>
+                                <div class="component-subtitle">Multi-Channel</div>
+                                <ul class="component-list">
+                                    <li>Email • Teams • Slack</li>
+                                    <li>Embedded dashboards</li>
+                                    <li>Mobile apps</li>
+                                </ul>
+                            </div>
+                            <div class="flow-component">
+                                <div class="component-title">Annotations</div>
+                                <div class="component-subtitle">Context & Comments</div>
+                                <ul class="component-list">
+                                    <li>Add business context</li>
+                                    <li>Tag team members</li>
+                                    <li>Track decisions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section class="components-section">
+        <div class="components-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">System <span class="gradient-text">Components</span></h2>
+                <p class="section-subtitle">Eight pillars of intelligent universal analytics</p>
+            </div>
+
+            <div class="components-grid">
+                <div class="component-card fade-in">
+                    <div class="component-icon">🌐</div>
+                    <h3>Universal Semantic Layer</h3>
+                    <div class="azure-service">Azure Synapse + Custom Framework</div>
+                    <p>
+                        Unified business logic that adapts to any industry vertical. Maintains consistent metric definitions (revenue, conversion, churn) while automatically adjusting calculations based on industry context. Pre-built templates for 15+ industries with extensible custom definitions.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🧠</div>
+                    <h3>Cost-Optimized AI Orchestrator</h3>
+                    <div class="azure-service">Semantic Kernel + Azure OpenAI</div>
+                    <p>
+                        Analyzes query complexity and routes to appropriate model tier. Simple lookups go to GPT-4 Turbo (€0.001/query), complex analysis to GPT-5 (€0.030/query), deep reasoning to GPT-o3 (€0.120/query). Achieves 75% cost reduction vs naive all-GPT-4 approach.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🔗</div>
+                    <h3>Universal Data Integration</h3>
+                    <div class="azure-service">Azure Synapse Analytics + Fabric OneLake</div>
+                    <p>
+                        Unified data access layer supporting 100+ connectors (SQL, NoSQL, APIs, files, IoT streams). Zero-ETL integration with Microsoft Fabric for real-time analytics. Automatic schema discovery and metadata synchronization across all sources.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">📈</div>
+                    <h3>AI-Powered Forecasting</h3>
+                    <div class="azure-service">Azure Machine Learning</div>
+                    <p>
+                        Automated time-series forecasting with ARIMA, Prophet, and neural networks. Self-tuning models that automatically select best algorithm per dataset. Supports what-if scenario planning and confidence intervals for predictions.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">🔍</div>
+                    <h3>Intelligent Metric Detection</h3>
+                    <div class="azure-service">Azure OpenAI (GPT-5) + Custom ML</div>
+                    <p>
+                        Scans data to automatically identify relevant KPIs and metrics. Suggests industry-specific measurements and benchmarks. Generates tracking dashboards without manual configuration. Learns from user interactions to improve relevance.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">📊</div>
+                    <h3>Smart Visualization Layer</h3>
+                    <div class="azure-service">Power BI Embedded + React + GPT-4V</div>
+                    <p>
+                        Industry-aware dashboard generation with 50+ pre-built templates. Intelligent chart selection based on data characteristics and user role. Fully responsive (desktop, tablet, mobile). Supports white-labeling and custom branding.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">💰</div>
+                    <h3>Real-Time Budget Monitoring</h3>
+                    <div class="azure-service">Azure Monitor + Custom Cost Tracker</div>
+                    <p>
+                        Tracks every AI query cost in real-time with detailed breakdowns by user, department, and query type. Budget alerts and automatic tier optimization. Historical cost analysis and ROI reporting. Integration with Azure Cost Management.
+                    </p>
+                </div>
+
+                <div class="component-card fade-in">
+                    <div class="component-icon">👥</div>
+                    <h3>Team Intelligence Sharing</h3>
+                    <div class="azure-service">Microsoft 365 + Azure Communication Services</div>
+                    <p>
+                        Share insights via email, Teams, Slack, or embedded widgets. Scheduled automated reports with natural language summaries. Annotation system for adding business context. Decision tracking and action item management.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Flow Section -->
+    <section class="dataflow-section">
+        <div class="dataflow-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Data Flow: <span class="gradient-text">Question to Predictive Insight</span></h2>
+                <p class="section-subtitle">11-step journey with intelligent routing optimization</p>
+            </div>
+
+            <div class="flow-timeline">
+                <!-- Step 1 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Business User Query</div>
+                        <div class="step-description">
+                            Executive asks via mobile app:
+                        </div>
+                        <div class="step-code">"Show me Q4 sales performance and predict Q1 revenue"</div>
+                        <div class="step-badge">Mobile Interface</div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Semantic Layer Interpretation</div>
+                        <div class="step-description">
+                            Universal Semantic Layer translates business concepts to technical metrics:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>"Q4 sales" → [Sales].[Revenue] WHERE Quarter = 4 AND Year = 2024</li>
+                                <li>"performance" → YoY comparison + trend analysis required</li>
+                                <li>"predict Q1" → Forecasting model needed</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">Multi-step analysis required (historical + predictive)</div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Intelligent Query Routing (The Core Innovation)</div>
+                        <div class="step-description">
+                            Router analyzes query complexity and selects optimal models:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Query Type: Hybrid (descriptive + predictive)</li>
+                                <li>Complexity: High (multi-step reasoning)</li>
+                                <li>Data Volume: 12 months (500K rows)</li>
+                                <li>User Role: Executive (needs high accuracy)</li>
+                            </ul>
+                        </div>
+                        <div class="step-tier standard">Step 1: GPT-4.1 Mini - €0.015</div>
+                        <div class="step-tier complex">Step 2: GPT-5 - €0.030</div>
+                        <div class="step-tier advanced">Step 3: Azure ML + GPT-o3 - €0.120</div>
+                        <div class="step-cost">
+                            <strong>Total Cost: €0.165</strong><br>
+                            Naive Approach (all GPT-4 Turbo): €0.450<br>
+                            <strong style="color: var(--success);">Savings: 63%</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Historical Data Retrieval</div>
+                        <div class="step-tier standard">Standard Tier - GPT-4.1 Mini</div>
+                        <div class="step-description">
+                            Fetch Q4 2024 sales data from Synapse Analytics:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Query Synapse: SELECT Revenue, Region, Product FROM Sales WHERE Q4 2024</li>
+                                <li>Aggregate: Total revenue = €8.5M</li>
+                                <li>Compare: Q4 2023 = €7.2M → +18% YoY</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">Processing Time: 1.2 seconds | Model Cost: €0.015</div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Trend Analysis</div>
+                        <div class="step-tier complex">Complex Tier - GPT-5</div>
+                        <div class="step-description">
+                            Analyze patterns and identify growth drivers:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Regional: EMEA +25%, NA +15%, APAC +12%</li>
+                                <li>Product: Product A +30%, Product B +10%</li>
+                                <li>Seasonality: Q4 typically +20% vs Q3</li>
+                                <li>Growth driver: New market expansion in EMEA</li>
+                            </ul>
+                        </div>
+                        <div class="step-result">Processing Time: 3.8 seconds | Model Cost: €0.030</div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <div class="step-title">Predictive Forecasting</div>
+                        <div class="step-tier advanced">Advanced Tier - Azure ML + GPT-o3</div>
+                        <div class="step-description">
+                            Generate Q1 2025 revenue forecast:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Historical data: 24 months of sales</li>
+                                <li>Algorithm: Prophet + ARIMA ensemble</li>
+                                <li>Validation: MAPE = 4.2% (excellent)</li>
+                                <li>Prediction: €7.8M (±€0.3M confidence)</li>
+                            </ul>
+                        </div>
+                        <div class="step-code">Reasoning (GPT-o3):
+"Forecast assumes continued EMEA expansion at current pace.
+Risk: Economic slowdown could reduce by 10-15%.
+Opportunity: New product launch (Feb) could add €500K."</div>
+                        <div class="step-result">Processing Time: 8.5 seconds | Model Cost: €0.120</div>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <div class="step-title">Insight Synthesis & Narrative Generation</div>
+                        <div class="step-tier standard">Standard Tier - GPT-4.1 Mini</div>
+                        <div class="step-description">
+                            Create executive-friendly summary:
+                        </div>
+                        <div class="step-code">Q4 2024 Performance: Strong finish with €8.5M revenue (+18% YoY)
+
+Key Highlights:
+• EMEA led growth at +25% driven by new market expansion
+• All regions positive, demonstrating broad-based strength
+• Product A outperformed (+30%), solidifying market position
+
+Q1 2025 Outlook: Forecast €7.8M (±€0.3M range)
+• Expected +16% growth vs Q1 2024
+• 35% probability of exceeding €8M threshold
+
+Recommended Actions:
+1. Accelerate EMEA expansion initiatives
+2. Prepare contingency plan for economic headwinds
+3. Ensure new product launch executes on schedule</div>
+                        <div class="step-result">Processing Time: 2.1 seconds | Model Cost: €0.015</div>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">8</div>
+                    <div class="step-content">
+                        <div class="step-title">Dashboard & Visualization Generation</div>
+                        <div class="step-description">
+                            Auto-create interactive dashboard with insights:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Executive Summary: Q4 €8.5M (+18%), Q1 Forecast €7.8M (+16%)</li>
+                                <li>Regional Performance Chart (Bar chart with YoY)</li>
+                                <li>Forecast Confidence Interval (Line chart)</li>
+                                <li>Growth Drivers Breakdown (Pie chart)</li>
+                                <li>Risk/Opportunity Matrix (2x2 grid)</li>
+                            </ul>
+                        </div>
+                        <div class="step-badge">Mobile-Responsive</div>
+                        <div class="step-badge">Interactive Drill-Downs</div>
+                    </div>
+                </div>
+
+                <!-- Step 9 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">9</div>
+                    <div class="step-content">
+                        <div class="step-title">Cost Tracking & Optimization Log</div>
+                        <div class="step-description">
+                            Record query cost and efficiency metrics:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Total Query Cost: €0.165</li>
+                                <li>vs Naive Approach: €0.450 (saved €0.285 = 63%)</li>
+                                <li>Processing Time: 15.6 seconds total</li>
+                                <li>Models Used: GPT-4.1 Mini (2x), GPT-5 (1x), Azure ML + GPT-o3 (1x)</li>
+                                <li>Department Budget: €1,000/month, Used: €45</li>
+                            </ul>
+                        </div>
+                        <div class="step-cost">
+                            <strong>Efficiency Metrics:</strong><br>
+                            Cost per Insight: €0.165<br>
+                            Forecast Accuracy: MAPE 4.2%<br>
+                            User Satisfaction: ⭐⭐⭐⭐⭐
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 10 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">10</div>
+                    <div class="step-content">
+                        <div class="step-title">Intelligent Caching (Future Queries)</div>
+                        <div class="step-description">
+                            Cache results for similar questions:
+                        </div>
+                        <div class="step-details">
+                            <ul>
+                                <li>Query pattern: "Q4 sales + Q1 forecast"</li>
+                                <li>Cache TTL: 24 hours (refresh on new data)</li>
+                                <li>Semantic variations cached:
+                                    <ul style="margin-top: 0.5rem;">
+                                        <li>"How did Q4 go and what's Q1 looking like?"</li>
+                                        <li>"Q4 performance summary plus Q1 prediction"</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="step-result">
+                            If similar query asked within 24h → instant response (€0.001 cache cost)<br>
+                            <strong style="color: var(--success);">Savings on repeat: 99% cost reduction</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 11 -->
+                <div class="flow-step fade-in">
+                    <div class="step-number">11</div>
+                    <div class="step-content">
+                        <div class="step-title">Delivered to User</div>
+                        <div class="step-description">
+                            Executive receives insights on mobile in under 16 seconds:
+                        </div>
+                        <div class="step-result">
+                            ✓ Natural language summary<br>
+                            ✓ Interactive dashboard (5 charts)<br>
+                            ✓ Export options: PDF, Excel, PowerPoint<br>
+                            ✓ Share: Email to team, post to Teams channel<br>
+                            ✓ Action items auto-extracted<br>
+                            <strong>Total Time: 15.6 seconds | Total Cost: €0.165 (vs €0.450 naive = 63% savings)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Adaptability Section -->
+    <section class="industry-section">
+        <div class="industry-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">One Platform, <span class="gradient-text">Any Industry</span></h2>
+                <p class="section-subtitle">Same query, different context, perfectly adapted insights</p>
+            </div>
+
+            <div class="industry-grid">
+                <div class="industry-card fade-in">
+                    <div class="industry-name">RETAIL</div>
+                    <div class="industry-query">"Show Q4 performance and predict Q1"</div>
+                    <div class="industry-details">
+                        <ul>
+                            <li>Revenue, basket size, conversion rate</li>
+                            <li>Holiday sales surge, inventory turnover</li>
+                            <li>Forecast: Demand planning for Q1 clearance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <div class="industry-name">HEALTHCARE</div>
+                    <div class="industry-query">"Show Q4 performance and predict Q1"</div>
+                    <div class="industry-details">
+                        <ul>
+                            <li>Patient outcomes, bed utilization, cost per case</li>
+                            <li>Flu season impact, staffing levels</li>
+                            <li>Forecast: Resource planning for Q1 (post-holiday)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="industry-card fade-in">
+                    <div class="industry-name">FINANCE</div>
+                    <div class="industry-query">"Show Q4 performance and predict Q1"</div>
+                    <div class="industry-details">
+                        <ul>
+                            <li>Portfolio returns, risk metrics, AUM growth</li>
+                            <li>Year-end rebalancing, tax-loss harvesting</li>
+                            <li>Forecast: Market outlook and allocation strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Optimization Section -->
+    <section class="cost-section">
+        <div class="cost-content">
+            <div class="section-header fade-in">
+                <h2 class="section-title">Intelligent <span class="gradient-text">Cost Optimization</span></h2>
+                <p class="section-subtitle">Proof of 75% cost reduction at scale</p>
+            </div>
+
+            <div class="cost-comparison fade-in">
+                <div class="comparison-header">Cost Comparison: Naive vs Intelligent Routing</div>
+
+                <div style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-tertiary);">
+                    Scenario: 10,000 queries/month (mixed complexity)
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-title">❌ NAIVE APPROACH (Everything on GPT-4 Turbo)</div>
+                    <div class="comparison-details">
+                        10,000 queries × €0.030 = <strong style="color: #EF4444;">€3,000/month</strong>
+                    </div>
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-title">✅ INTELLIGENT ROUTING (Smart Model Selection)</div>
+                    <div class="comparison-details">
+                        • 4,000 simple queries → GPT-4 Turbo @ €0.001 = <strong>€40</strong><br>
+                        • 3,500 standard queries → GPT-4.1 Mini @ €0.015 = <strong>€525</strong><br>
+                        • 2,000 complex queries → GPT-5 @ €0.030 = <strong>€600</strong><br>
+                        • 500 advanced queries → GPT-o3 @ €0.120 = <strong>€600</strong><br>
+                        <strong style="color: var(--success); font-size: 1.125rem; margin-top: 0.5rem; display: block;">Total: €765/month</strong>
+                    </div>
+                </div>
+
+                <div class="savings-highlight">
+                    <div class="savings-amount">€2,235/month saved</div>
+                    <div class="savings-text">75% reduction = €26,820/year</div>
+                    <div style="margin-top: var(--spacing-md); font-size: 0.875rem; color: var(--text-tertiary);">
+                        Plus Caching: 20% of queries cached → -€153/month<br>
+                        <strong style="color: var(--text-primary);">Final Cost: €612/month (80% total savings)</strong>
+                    </div>
+                </div>
+
+                <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background: var(--bg-card); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text-primary);">
+                        At Scale (100,000 queries/month)
+                    </div>
+                    <div style="color: var(--text-secondary);">
+                        Naive: €30,000/month<br>
+                        Intelligent: €6,120/month<br>
+                        <strong style="color: var(--success); font-size: 1.25rem;">Annual Savings: €286,560</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Callout Section -->
+    <section class="callout-section">
+        <div class="callout-content">
+            <div class="callout-box fade-in">
+                <h3 class="callout-title">Why This Changes Everything</h3>
+                <p class="callout-text">
+                    Traditional analytics platforms force you to choose: either expensive customization for your industry, or generic tools that don't fit your business. This platform eliminates that choice with a <strong>universal semantic layer</strong> that adapts to any vertical while <strong>intelligent model routing cuts AI costs by 75%</strong>. Deploy in days, not months—no data engineering required. One platform powering insights for retail, healthcare, finance, manufacturing, and 11+ more industries with the same proven architecture.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="arch-footer">
+        <div class="arch-footer-content fade-in">
+            <h2>Interested in this <span class="gradient-text">Architecture?</span></h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">
+                Explore the implementation on GitHub or calculate your potential savings with this platform.
+            </p>
+
+            <div class="footer-buttons">
+                <a href="https://github.com/George-Sakellariou/universal-ai-insights" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View GitHub Repository
+                </a>
+                <a href="index.html#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Georgios Sakellariou</p>
+            <p>AI & Cloud Solutions Architecture</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Add animation delays to staggered elements
+        document.querySelectorAll('.challenge-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.component-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.flow-step').forEach((step, index) => {
+            step.style.transitionDelay = `${index * 0.05}s`;
+        });
+
+        document.querySelectorAll('.industry-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
