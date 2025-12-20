@@ -653,6 +653,103 @@
             font-weight: 500;
         }
 
+        /* Interactive Demo CTA */
+        .interactive-demo-cta {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-primary);
+        }
+
+        .demo-cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .demo-cta-box {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(20, 184, 166, 0.05) 100%);
+            border: 2px solid rgba(20, 184, 166, 0.3);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .demo-cta-box:hover::before {
+            left: 100%;
+        }
+
+        .demo-cta-box:hover {
+            border-color: rgba(20, 184, 166, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(20, 184, 166, 0.2);
+        }
+
+        .demo-cta-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            animation: pulse-demo 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-demo {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .demo-cta-box h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .demo-cta-box p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        .demo-cta-features {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .demo-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .demo-feature::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: rgba(20, 184, 166, 0.2);
+            color: #14B8A6;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
         /* Footer CTA */
         .arch-footer {
             padding: var(--spacing-3xl) var(--spacing-xl);
@@ -707,8 +804,23 @@
             .dataflow-section,
             .industry-section,
             .capabilities-section,
+            .interactive-demo-cta,
             .arch-footer {
                 padding: var(--spacing-xl) var(--spacing-md);
+            }
+
+            .demo-cta-features {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-sm);
+            }
+
+            .demo-cta-box h3 {
+                font-size: 1.5rem;
+            }
+
+            .demo-cta-box p {
+                font-size: 1rem;
             }
 
             .challenge-grid {
@@ -1469,6 +1581,31 @@ Format: PDF (scanned image)</div>
                     <div class="capability-badge">GDPR/HIPAA compliant</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo CTA -->
+    <section class="interactive-demo-cta">
+        <div class="demo-cta-content fade-in">
+            <a href="interactive-idp-demo/index.html" style="text-decoration: none;">
+                <div class="demo-cta-box">
+                    <div class="demo-cta-icon">🎮</div>
+                    <h3><span class="gradient-text">Watch AI-Powered OCR in Action</span></h3>
+                    <p>
+                        Experience our intelligent document processing pipeline. See OCR extraction, automated validation,
+                        and human-in-the-loop workflows process invoices, receipts, and contracts with 99%+ accuracy.
+                    </p>
+                    <div class="demo-cta-features">
+                        <div class="demo-feature">OCR Processing</div>
+                        <div class="demo-feature">99%+ Accuracy</div>
+                        <div class="demo-feature">Auto Validation</div>
+                        <div class="demo-feature">ERP Integration</div>
+                    </div>
+                    <div class="btn btn-primary">
+                        Launch Interactive Demo →
+                    </div>
+                </div>
+            </a>
         </div>
     </section>
 

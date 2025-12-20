@@ -769,6 +769,103 @@
             color: var(--text-secondary);
         }
 
+        /* Interactive Demo CTA */
+        .interactive-demo-cta {
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: var(--bg-primary);
+        }
+
+        .demo-cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .demo-cta-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .demo-cta-box:hover::before {
+            left: 100%;
+        }
+
+        .demo-cta-box:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .demo-cta-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            animation: pulse-demo 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-demo {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .demo-cta-box h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .demo-cta-box p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        .demo-cta-features {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .demo-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .demo-feature::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: rgba(139, 92, 246, 0.2);
+            color: #8B5CF6;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
         /* Footer CTA */
         .arch-footer {
             padding: var(--spacing-3xl) var(--spacing-xl);
@@ -811,8 +908,23 @@
             .industry-section,
             .cost-section,
             .callout-section,
+            .interactive-demo-cta,
             .arch-footer {
                 padding: var(--spacing-xl) var(--spacing-md);
+            }
+
+            .demo-cta-features {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-sm);
+            }
+
+            .demo-cta-box h3 {
+                font-size: 1.5rem;
+            }
+
+            .demo-cta-box p {
+                font-size: 1rem;
             }
 
             .challenge-grid {
@@ -1578,6 +1690,31 @@ Recommended Actions:
                     Traditional analytics platforms force you to choose: either expensive customization for your industry, or generic tools that don't fit your business. This platform eliminates that choice with a <strong>universal semantic layer</strong> that adapts to any vertical while <strong>intelligent model routing cuts AI costs by 75%</strong>. Deploy in days, not months—no data engineering required. One platform powering insights for retail, healthcare, finance, manufacturing, and 11+ more industries with the same proven architecture.
                 </p>
             </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo CTA -->
+    <section class="interactive-demo-cta">
+        <div class="demo-cta-content fade-in">
+            <a href="interactive-ai-insights-demo/index.html" style="text-decoration: none;">
+                <div class="demo-cta-box">
+                    <div class="demo-cta-icon">🎮</div>
+                    <h3><span class="gradient-text">See Intelligent Model Routing in Action</span></h3>
+                    <p>
+                        Experience our smart AI orchestration that automatically routes queries to the optimal model.
+                        Watch GPT-4 handle complex analysis, GPT-3.5 process simple queries, and caching deliver instant results.
+                    </p>
+                    <div class="demo-cta-features">
+                        <div class="demo-feature">Smart Model Selection</div>
+                        <div class="demo-feature">75% Cost Reduction</div>
+                        <div class="demo-feature">Real-time Metrics</div>
+                        <div class="demo-feature">Performance Comparison</div>
+                    </div>
+                    <div class="btn btn-primary">
+                        Launch Interactive Demo →
+                    </div>
+                </div>
+            </a>
         </div>
     </section>
 
