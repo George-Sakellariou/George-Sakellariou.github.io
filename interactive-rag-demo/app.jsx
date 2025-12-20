@@ -2,14 +2,14 @@ const { useState, useEffect, useRef } = React;
 
 // Node definitions
 const NODES = [
-  { id: 'user-query', label: 'User Query', icon: '💬', color: '#6B7280', x: 50, y: 50 },
-  { id: 'cache', label: 'Semantic Cache', icon: '⚡', color: '#10B981', x: 250, y: 50 },
-  { id: 'embedding', label: 'Embedding Model', icon: '🧮', color: '#8B5CF6', x: 450, y: 50 },
-  { id: 'search', label: 'Hybrid Search', icon: '🔍', color: '#0078D4', x: 650, y: 50 },
-  { id: 'rerank', label: 'Re-ranking', icon: '🎯', color: '#F59E0B', x: 800, y: 150 },
-  { id: 'context', label: 'Context Assembly', icon: '📄', color: '#6366F1', x: 650, y: 250 },
-  { id: 'llm', label: 'GPT-4/GPT-4o', icon: '🤖', color: '#EF4444', x: 450, y: 250 },
-  { id: 'response', label: 'Response', icon: '✅', color: '#10B981', x: 250, y: 250 }
+  { id: 'user-query', label: 'User Query', icon: '💬', color: '#6B7280', x: 50, y: 40 },
+  { id: 'cache', label: 'Semantic Cache', icon: '⚡', color: '#10B981', x: 250, y: 40 },
+  { id: 'embedding', label: 'Embedding Model', icon: '🧮', color: '#8B5CF6', x: 450, y: 40 },
+  { id: 'search', label: 'Hybrid Search', icon: '🔍', color: '#0078D4', x: 650, y: 40 },
+  { id: 'rerank', label: 'Re-ranking', icon: '🎯', color: '#F59E0B', x: 800, y: 140 },
+  { id: 'context', label: 'Context Assembly', icon: '📄', color: '#6366F1', x: 650, y: 220 },
+  { id: 'llm', label: 'GPT-4/GPT-4o', icon: '🤖', color: '#EF4444', x: 450, y: 220 },
+  { id: 'response', label: 'Response', icon: '✅', color: '#10B981', x: 250, y: 220 }
 ];
 
 // Connections between nodes
